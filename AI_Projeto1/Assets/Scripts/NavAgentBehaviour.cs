@@ -8,6 +8,8 @@ using LibGameAI.FSMs;
 
 public class NavAgentBehaviour : MonoBehaviour
 {
+    private bool        _arrived;
+
     //stage timers variables
 
     private int         _stage;
@@ -57,6 +59,14 @@ public class NavAgentBehaviour : MonoBehaviour
     {
         Action actions = stateMachine.Update();
         actions?.Invoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Goal"))
+        {
+            _arrived = true;
+        }
     }
 
 
@@ -147,7 +157,7 @@ public class NavAgentBehaviour : MonoBehaviour
         
         goEat.AddTransition(
             new Transition(
-                () => gameObject.GetComponent<NavMeshAgent>().remainingDistance <= gameObject.GetComponent<NavMeshAgent>().stoppingDistance,
+                () => _arrived == true,
                 null,
                 eatingState));
 
