@@ -96,6 +96,7 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _stamina = _maxStamina;
         }
+        _arrived = false;
     }
 
     private void IncreaseHealth()
@@ -105,6 +106,7 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _health = _maxHealth;
         }
+        _arrived = false;
     }
 
     private void GenerateAIAgentStats()
@@ -149,17 +151,28 @@ public class NavAgentBehaviour : MonoBehaviour
             MoveToFood,
             null);
 
-        State tiredState = new State("Tired",
+        State restingState = new State("Tired",
             null,
             IncreaseStamina,
             null);
 
-        
+        State goRest = new State("Go Rest",
+            () => Debug.Log("Entrou"),
+            MoveToRest,
+            null);
+
+
         goEat.AddTransition(
             new Transition(
                 () => _arrived == true,
                 null,
                 eatingState));
+
+        goRest.AddTransition(
+           new Transition(
+               () => _arrived == true,
+               null,
+               restingState));
 
         stateMachine = new StateMachine(goEat);
     }
@@ -169,5 +182,33 @@ public class NavAgentBehaviour : MonoBehaviour
         _agent.destination = _food.transform.position;
     }
 
-    
+    private void MoveToRest()
+    {
+        int i = URandom.Range(1, 2);
+        if (i == 1)
+        {
+            _agent.destination = _chillZone1.transform.position;
+
+        }
+        else
+        {
+            _agent.destination = _chillZone2.transform.position;
+        }
+    }
+
+    private void MoveToStages()
+    {
+        int i = URandom.Range(1, 2);
+        if (i == 1)
+        {
+            _agent.destination = _stage1.transform.position;
+
+        }
+        else
+        {
+            _agent.destination = _stage2.transform.position;
+        }
+    }
+
+
 }
