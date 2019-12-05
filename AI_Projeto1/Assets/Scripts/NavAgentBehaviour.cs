@@ -109,6 +109,52 @@ public class NavAgentBehaviour : MonoBehaviour
         _arrived = false;
     }
 
+    private void RestingActions()
+    {
+        IncreaseStamina();
+        DecreaseHealth();
+
+    }
+
+    private void EatingActions()
+    {
+        IncreaseHealth();
+        DecreaseStamina();
+
+    }
+
+    private void GoEatActions()
+    {
+        DecreaseHealth();
+        DecreaseStamina();
+        MoveToFood();
+
+    }
+
+    private void GoRestActions()
+    {
+        DecreaseHealth();
+        DecreaseStamina();
+        MoveToRest();
+
+    }
+
+    private void GoStage1Actions()
+    {
+        DecreaseHealth();
+        DecreaseStamina();
+        MoveToStage1();
+
+    }
+
+    private void GoStage2Actions()
+    {
+        DecreaseHealth();
+        DecreaseStamina();
+        MoveToStage2();
+
+    }
+
     private void GenerateAIAgentStats()
     {
         //generate stage preferences values
@@ -143,22 +189,37 @@ public class NavAgentBehaviour : MonoBehaviour
     {
         State eatingState = new State("Hungry",
             () => Debug.Log("Entrou health++"),
-            IncreaseHealth,
+            EatingActions,
             () => Debug.Log("Saiu"));
 
         State goEat = new State("Go Eat",
             ()=> Debug.Log("Entrou"),
-            MoveToFood,
+            GoEatActions,
             null);
 
         State restingState = new State("Tired",
             null,
-            IncreaseStamina,
+            RestingActions,
             null);
 
         State goRest = new State("Go Rest",
             () => Debug.Log("Entrou"),
-            MoveToRest,
+            GoRestActions,
+            null);
+
+        State goStage1 = new State("Go Stage1",
+            () => Debug.Log("Entrou"),
+            GoStage1Actions,
+            null);
+
+        State goStage2 = new State("Go Stage2",
+            () => Debug.Log("Entrou"),
+            GoStage2Actions,
+            null);
+
+        State watchingStage1 = new State("Watching Stage1",
+            () => Debug.Log("Entrou"),
+            WatchingStage1Actions,
             null);
 
 
@@ -174,6 +235,26 @@ public class NavAgentBehaviour : MonoBehaviour
                null,
                restingState));
 
+        eatingState.AddTransition(
+           new Transition(
+               () => (_health >= _maxHealth && _stamina <= 0),
+               null,
+               goRest));
+
+        restingState.AddTransition(
+           new Transition(
+               () => (_stamina >= _maxStamina && _health-- <= 0),
+               null,
+               goEat));
+
+        eatingState.AddTransition(
+           new Transition(
+               () => (_health >= _maxHealth && _stamina > 0), //falta adicionar condição de escolha de palcos
+               null,
+               goStage1));
+
+
+
         stateMachine = new StateMachine(goEat);
     }
 
@@ -184,30 +265,20 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void MoveToRest()
     {
-        int i = URandom.Range(1, 2);
-        if (i == 1)
-        {
-            _agent.destination = _chillZone1.transform.position;
-
-        }
-        else
-        {
-            _agent.destination = _chillZone2.transform.position;
-        }
+      
+        _agent.destination = _chillZone1.transform.position;
     }
 
-    private void MoveToStages()
+    private void MoveToStage1()
     {
-        int i = URandom.Range(1, 2);
-        if (i == 1)
-        {
-            _agent.destination = _stage1.transform.position;
+        _agent.destination = _stage1.transform.position;
+      
+    }
 
-        }
-        else
-        {
-            _agent.destination = _stage2.transform.position;
-        }
+    private void MoveToStage2()
+    {
+        _agent.destination = _stage2.transform.position;
+
     }
 
 
