@@ -11,37 +11,37 @@ public class NavAgentBehaviour : MonoBehaviour
 
     State initialState;
 
-    private bool        _arrive;
+    private bool _arrive;
 
     //stage timers variables
 
-    private float       _stage1TotalTime;
-    private float       _stage1LoseTime;
-    private float       _stage1Time;
-    private float       _stage2TotalTime;
-    private float       _stage2LoseTime;
-    private float       _stage2Time;
+    private float _stage1TotalTime;
+    private float _stage1LoseTime;
+    private float _stage1Time;
+    private float _stage2TotalTime;
+    private float _stage2LoseTime;
+    private float _stage2Time;
 
     //Health variables
-    private float       _health;
-    private float       _maxHealth;
-    private float       _startingHealth;
-    private float       _healthLoseSpeed;
-    private float       _healthGainSpeed;
+    private float _health;
+    private float _maxHealth;
+    private float _startingHealth;
+    private float _healthLoseSpeed;
+    private float _healthGainSpeed;
 
     //Stamina variables
-    private float       _stamina;
-    private float       _maxStamina;
-    private float       _startingStamina;
-    private float       _staminaLoseSpeed;
-    private float       _staminaGainSpeed;
+    private float _stamina;
+    private float _maxStamina;
+    private float _startingStamina;
+    private float _staminaLoseSpeed;
+    private float _staminaGainSpeed;
 
-     //References to locations
-    private GameObject  _stage1             = null;
-    private GameObject  _stage2             = null;
-    private GameObject  _chillZone1         = null;
-    private GameObject  _chillZone2         = null;
-    private GameObject  _food               = null;
+    //References to locations
+    private GameObject _stage1 = null;
+    private GameObject _stage2 = null;
+    private GameObject _chillZone1 = null;
+    private GameObject _chillZone2 = null;
+    private GameObject _food = null;
 
     // Reference to the NavMeshAgent component
     private NavMeshAgent _agent;
@@ -66,7 +66,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Food"))
+        if (other.CompareTag("Food"))
         {
             _arrive = true;
         }
@@ -117,7 +117,7 @@ public class NavAgentBehaviour : MonoBehaviour
     private void IncreaseHealth()
     {
         _health += _healthGainSpeed * Time.fixedDeltaTime;
-        if(_health >= _maxHealth)
+        if (_health >= _maxHealth)
         {
             _health = _maxHealth;
         }
@@ -192,7 +192,7 @@ public class NavAgentBehaviour : MonoBehaviour
         //Reset Stage 2 Watching time
         _stage1Time = _stage1TotalTime;
         _stage2Time -= _stage1LoseTime * Time.deltaTime;
-        if(_stage2Time <= 0)
+        if (_stage2Time <= 0)
         {
             _stage2Time = 0;
         }
@@ -238,7 +238,7 @@ public class NavAgentBehaviour : MonoBehaviour
             () => Debug.Log("parou de comer"));
 
         State goEat = new State("Go Eat",
-            ()=> Debug.Log("vai comer"),
+            () => Debug.Log("vai comer"),
             GoEatActions,
             () => Debug.Log("chegou a comida"));
 
@@ -303,7 +303,7 @@ public class NavAgentBehaviour : MonoBehaviour
                () => (_health >= _maxHealth && _stamina > 0 && _stage1Time > _stage2Time),
                null,
                goStage1));
-       
+
         eatingState.AddTransition(
            new Transition(
                () => (_health >= _maxHealth && _stamina > 0 && _stage2Time > _stage1Time),
@@ -328,11 +328,35 @@ public class NavAgentBehaviour : MonoBehaviour
                null,
                watchingStage1));
 
+        goStage1.AddTransition(
+           new Transition(
+               () => _health <= 0,
+               null,
+               goEat));
+
+        goStage1.AddTransition(
+           new Transition(
+               () => _stamina <= 0,
+               null,
+               goRest));
+
         goStage2.AddTransition(
            new Transition(
                () => _arrive == true,
                null,
                watchingStage2));
+
+        goStage2.AddTransition(
+           new Transition(
+               () => _health <= 0,
+               null,
+               goEat));
+
+        goStage2.AddTransition(
+           new Transition(
+               () => _stamina <= 0,
+               null,
+               goRest));
 
         watchingStage1.AddTransition(
            new Transition(
@@ -372,11 +396,11 @@ public class NavAgentBehaviour : MonoBehaviour
 
 
         //get initial state
-        if(_stage1Time > _stage2Time)
+        if (_stage1Time > _stage2Time)
         {
             initialState = goStage1;
         }
-        else 
+        else
         {
             initialState = goStage2;
         }
@@ -392,14 +416,14 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void MoveToRest()
     {
-      
+
         _agent.destination = _chillZone1.transform.position;
     }
 
     private void MoveToStage1()
     {
         _agent.destination = _stage1.transform.position;
-      
+
     }
 
     private void MoveToStage2()
