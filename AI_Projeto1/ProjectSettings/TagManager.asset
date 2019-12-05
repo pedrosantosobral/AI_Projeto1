@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Goal
+  - Food
+  - Stage1
+  - Stage2
+  - Rest
   layers:
   - Default
   - TransparentFX
