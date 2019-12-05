@@ -8,7 +8,7 @@ using LibGameAI.FSMs;
 
 public class NavAgentBehaviour : MonoBehaviour
 {
-
+    private float _agentSpeed = 8;
     State initialState;
 
     private bool _arrive;
@@ -126,13 +126,14 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void RestingActions()
     {
+        _agent.speed -= Time.deltaTime * 3;
         IncreaseStamina();
         DecreaseHealth();
-
     }
 
     private void EatingActions()
     {
+        _agent.speed -= Time.deltaTime;
         IncreaseHealth();
         DecreaseStamina();
 
@@ -140,6 +141,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void GoEatActions()
     {
+        _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
         MoveToFood();
@@ -148,6 +150,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void GoRestActions()
     {
+        _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
         MoveToRest();
@@ -156,6 +159,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void GoStage1Actions()
     {
+        _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
         MoveToStage1();
@@ -164,6 +168,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void GoStage2Actions()
     {
+        _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
         MoveToStage2();
@@ -172,6 +177,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void WatchingStage1Actions()
     {
+        _agent.speed -= Time.deltaTime;
         _arrive = false;
         DecreaseHealth();
         DecreaseStamina();
@@ -186,6 +192,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void WatchingStage2Actions()
     {
+        _agent.speed -= Time.deltaTime; ;
         _arrive = false;
         DecreaseHealth();
         DecreaseStamina();
@@ -211,14 +218,14 @@ public class NavAgentBehaviour : MonoBehaviour
         //generate random health values
         _maxHealth = URandom.Range(80f, 100f);
         _startingHealth = URandom.Range(0, _maxHealth);
-        _healthLoseSpeed = URandom.Range(0.1f, 0.5f);
+        _healthLoseSpeed = URandom.Range(0.05f, 0.2f);
         _healthGainSpeed = URandom.Range(3f, 5f);
         _health = _startingHealth;
 
         //generate random stamina values
         _maxStamina = URandom.Range(70f, 100f);
         _startingStamina = URandom.Range(0, _maxStamina);
-        _staminaLoseSpeed = URandom.Range(0.5f, 1f);
+        _staminaLoseSpeed = URandom.Range(0.1f, 0.5f);
         _staminaGainSpeed = URandom.Range(3f, 5f);
         _stamina = _startingStamina;
 
@@ -405,7 +412,6 @@ public class NavAgentBehaviour : MonoBehaviour
             initialState = goStage2;
         }
 
-
         stateMachine = new StateMachine(initialState);
     }
 
@@ -416,14 +422,12 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void MoveToRest()
     {
-
         _agent.destination = _chillZone1.transform.position;
     }
 
     private void MoveToStage1()
     {
         _agent.destination = _stage1.transform.position;
-
     }
 
     private void MoveToStage2()
