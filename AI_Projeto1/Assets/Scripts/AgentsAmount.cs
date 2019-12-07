@@ -5,38 +5,22 @@ using URandom = UnityEngine.Random;
 
 public class AgentsAmount : MonoBehaviour
 {
-    public int _timeForSpawn;
-    private int _startIterator = 1;
-    private int _afterStartIterator = 1;
-    public GameObject agentPrefab;
-    public int amountOfAgentsAtStart;
-    public int amountOfAgentsAfterStart;
+    public GameObject   agentPrefab;
+    public int          amountOfAgents;
+    public float        timeBetweenAgents;
 
-    public Transform enterPosition;
-    // Start is called before the first frame update
-
-
-    // Update is called once per frame
-    private void FixedUpdate()
-    {    
-        if(_startIterator < amountOfAgentsAtStart)
-        {
-            //Vector3 temp = new Vector3(URandom.Range(-3,3), 1, URandom.Range(-3, 3));
-            //gameObject.transform.position += temp;
-            Instantiate(agentPrefab, gameObject.transform);
-            _startIterator = _startIterator + 1;
-        }
-
-        if (_afterStartIterator < amountOfAgentsAfterStart)
-        {
-            Invoke("InstantiateAgent", _timeForSpawn);
-            _afterStartIterator = _afterStartIterator + 1;
-        }
-
-    }
-
-    private void InstantiateAgent()
+    void Start()
     {
-        Instantiate(agentPrefab,enterPosition);
+        StartCoroutine(MyCounter(amountOfAgents));
+    }
+    IEnumerator MyCounter(int number)
+    {
+        int i = 0;
+        while (i < number)
+        {
+            Instantiate(agentPrefab, gameObject.transform);
+            i++;
+            yield return new WaitForSeconds(timeBetweenAgents);
+        }
     }
 }

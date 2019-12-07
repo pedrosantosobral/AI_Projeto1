@@ -11,7 +11,10 @@ public class NavAgentBehaviour : MonoBehaviour
     private float _agentSpeed = 8;
     State initialState;
 
-    private bool _arrive;
+    private bool _arriveFood;
+    private bool _arriveChill;
+    private bool _arriveStage1;
+    private bool _arriveStage2;
 
     //stage timers variables
 
@@ -68,20 +71,25 @@ public class NavAgentBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Food"))
         {
-            _arrive = true;
+            _arriveFood = true;
         }
         if (other.CompareTag("Rest"))
         {
-            _arrive = true;
+            _arriveChill = true;
         }
         if (other.CompareTag("Stage1"))
         {
-            _arrive = true;
+            _arriveStage1 = true;
         }
         if (other.CompareTag("Stage2"))
         {
-            _arrive = true;
+            _arriveStage2 = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 
 
@@ -111,7 +119,7 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _stamina = _maxStamina;
         }
-        _arrive = false;
+        _arriveChill = false;
     }
 
     private void IncreaseHealth()
@@ -121,7 +129,7 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _health = _maxHealth;
         }
-        _arrive = false;
+        _arriveFood = false;
     }
 
     private void RestingActions()
@@ -178,7 +186,7 @@ public class NavAgentBehaviour : MonoBehaviour
     private void WatchingStage1Actions()
     {
         _agent.speed -= Time.deltaTime;
-        _arrive = false;
+        _arriveStage1 = false;
         DecreaseHealth();
         DecreaseStamina();
         //Reset Stage 2 Watching time
@@ -193,7 +201,7 @@ public class NavAgentBehaviour : MonoBehaviour
     private void WatchingStage2Actions()
     {
         _agent.speed -= Time.deltaTime; ;
-        _arrive = false;
+        _arriveStage2 = false;
         DecreaseHealth();
         DecreaseStamina();
         //Reset Stage 2 Watching time
@@ -282,13 +290,13 @@ public class NavAgentBehaviour : MonoBehaviour
 
         goEat.AddTransition(
             new Transition(
-                () => _arrive == true,
+                () => _arriveFood == true,
                 null,
                 eatingState));
 
         goRest.AddTransition(
            new Transition(
-               () => _arrive == true,
+               () => _arriveChill == true,
                null,
                restingState));
 
@@ -331,7 +339,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
         goStage1.AddTransition(
            new Transition(
-               () => _arrive == true,
+               () => _arriveStage1 == true,
                null,
                watchingStage1));
 
@@ -349,7 +357,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
         goStage2.AddTransition(
            new Transition(
-               () => _arrive == true,
+               () => _arriveStage2 == true,
                null,
                watchingStage2));
 
