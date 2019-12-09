@@ -87,10 +87,6 @@ public class NavAgentBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        
-    }
 
 
     private void DecreaseStamina()
@@ -248,9 +244,9 @@ public class NavAgentBehaviour : MonoBehaviour
     private void CreateFSM()
     {
         State eatingState = new State("Hungry",
-            () => Debug.Log("está a comer"),
+            () => Debug.Log("temp"),//BlockAgent,
             EatingActions,
-            () => Debug.Log("parou de comer"));
+            () => Debug.Log("temp"));//UnblockAgent;
 
         State goEat = new State("Go Eat",
             () => Debug.Log("vai comer"),
@@ -444,5 +440,15 @@ public class NavAgentBehaviour : MonoBehaviour
 
     }
 
+    private void BlockAgent()
+    {
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        gameObject.GetComponent<NavMeshObstacle>().enabled = true;
+    }
 
+    private void UnblockAgent()
+    {
+        gameObject.GetComponent<NavMeshObstacle>().enabled = false;
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+    }
 }
