@@ -9,14 +9,12 @@ public class Table : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //start with empty table
         tableIsFull = false;
+        //start with 0 agents
         _ammountOfAgents = 0; 
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        _ammountOfAgents += 1;
-    }
+    
 
     private void OnTriggerExit(Collider other)
     {
@@ -35,4 +33,8 @@ public class Table : MonoBehaviour
         }
     }
 
+    public void IncrementTheTable()
+    {
+        _ammountOfAgents += 1;
+    }
 }

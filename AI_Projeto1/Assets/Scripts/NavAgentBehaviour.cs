@@ -8,6 +8,11 @@ using LibGameAI.FSMs;
 
 public class NavAgentBehaviour : MonoBehaviour
 {
+
+    private TableManager _tableManagerReference;
+    private GameObject   _requestedTableReference;
+    private bool         _requestedOnce;
+
     private float _agentSpeed = 8;
     State initialState;
 
@@ -54,6 +59,11 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void Start()
     {
+        //start with no requested table
+        _requestedOnce = false;
+        //get reference of table manager
+        _tableManagerReference = GameObject.Find("TableManager").GetComponent<TableManager>();
+
         GenerateAIAgentStats();
         CreateFSM();
 
@@ -65,6 +75,7 @@ public class NavAgentBehaviour : MonoBehaviour
     {
         Action actions = stateMachine.Update();
         actions?.Invoke();
+        RecalculatePath();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,6 +95,17 @@ public class NavAgentBehaviour : MonoBehaviour
         if (other.CompareTag("Stage2"))
         {
             _arriveStage2 = true;
+        }
+
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //while is on requesting spot allow table requests
+        if (other.CompareTag("WaitingSpot"))
+        {
+            _requestedOnce = false;
         }
     }
 
@@ -137,10 +159,8 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void EatingActions()
     {
-        _agent.speed -= Time.deltaTime;
         IncreaseHealth();
         DecreaseStamina();
-
     }
 
     private void GoEatActions()
@@ -148,6 +168,11 @@ public class NavAgentBehaviour : MonoBehaviour
         _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
+        if(_requestedOnce == false)
+        {
+            RequestTable();
+            _requestedOnce = true;
+        }
         MoveToFood();
 
     }
@@ -244,9 +269,9 @@ public class NavAgentBehaviour : MonoBehaviour
     private void CreateFSM()
     {
         State eatingState = new State("Hungry",
-            () => Debug.Log("temp"),//BlockAgent,
+            BlockAgent,
             EatingActions,
-            () => Debug.Log("temp"));//UnblockAgent;
+            UnblockAgent);
 
         State goEat = new State("Go Eat",
             () => Debug.Log("vai comer"),
@@ -421,9 +446,10 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void MoveToFood()
     {
-        _agent.destination = _food.transform.position;
+         _agent.destination = _requestedTableReference.transform.position;
+     
     }
-
+    
     private void MoveToRest()
     {
         _agent.destination = _chillZone1.transform.position;
@@ -442,13 +468,27 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void BlockAgent()
     {
+        //disbale player movement
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<NavMeshObstacle>().enabled = true;
     }
 
     private void UnblockAgent()
     {
+        //restet request table permition
+        _requestedOnce = false;
+        //enable player movement
         gameObject.GetComponent<NavMeshObstacle>().enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    private void RequestTable()
+    {
+        _requestedTableReference = _tableManagerReference.GiveTableToAgent();
+    }
+
+    private void RecalculatePath()
+    {
+       //gameObject.position
     }
 }
