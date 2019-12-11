@@ -10,8 +10,11 @@ public class NavAgentBehaviour : MonoBehaviour
 {
 
     private TableManager _tableManagerReference;
+    private GreenSpaceManager _greenManagerReference;
     private GameObject   _requestedTableReference;
-    private bool         _requestedOnce;
+    private GameObject   _requestedGreenReference;
+    private bool         _requestedTableOnce;
+    private bool         _requestedGreenOnce;
 
     private float _agentSpeed = 8;
     State initialState;
@@ -59,10 +62,15 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void Start()
     {
-        //start with no requested table
-        _requestedOnce = false;
+        //start with no requested table and green space
+        _requestedTableOnce = false;
+        _requestedGreenOnce = false;
+
         //get reference of table manager
         _tableManagerReference = GameObject.Find("TableManager").GetComponent<TableManager>();
+
+        //get reference of green space
+        _greenManagerReference = GameObject.Find("GreenSpaceManager").GetComponent<GreenSpaceManager>();
 
         GenerateAIAgentStats();
         CreateFSM();
@@ -105,7 +113,15 @@ public class NavAgentBehaviour : MonoBehaviour
         //while is on requesting spot allow table requests
         if (other.CompareTag("WaitingSpot"))
         {
-            _requestedOnce = false;
+            _requestedTableOnce = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Rest"))
+        {
+            _requestedGreenOnce = false;
         }
     }
 
@@ -168,10 +184,10 @@ public class NavAgentBehaviour : MonoBehaviour
         _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
-        if(_requestedOnce == false)
+        if(_requestedTableOnce == false)
         {
             RequestTable();
-            _requestedOnce = true;
+            _requestedTableOnce = true;
         }
         MoveToFood();
 
@@ -182,6 +198,11 @@ public class NavAgentBehaviour : MonoBehaviour
         _agent.speed = _agentSpeed;
         DecreaseHealth();
         DecreaseStamina();
+        if (_requestedGreenOnce == false)
+        {
+            RequestGreenSpace();
+            _requestedGreenOnce = true;
+        }
         MoveToRest();
 
     }
@@ -476,7 +497,7 @@ public class NavAgentBehaviour : MonoBehaviour
     private void UnblockAgent()
     {
         //restet request table permition
-        _requestedOnce = false;
+        _requestedTableOnce = false;
         //enable player movement
         gameObject.GetComponent<NavMeshObstacle>().enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
@@ -485,6 +506,11 @@ public class NavAgentBehaviour : MonoBehaviour
     private void RequestTable()
     {
         _requestedTableReference = _tableManagerReference.GiveTableToAgent();
+    }
+
+    private void RequestGreenSpace()
+    {
+        _requestedGreenReference = _greenManagerReference.GiveGreenSpaceToAgent();
     }
 
     private void RecalculatePath()

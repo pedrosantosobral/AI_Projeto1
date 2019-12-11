@@ -31,7 +31,6 @@ O relatório foi feito por todos os elementos do grupo.
 ### Resultados e discussão:
 
 ### Conclusões:
-Com este projeto melhorámos os nossos conhecimentos de c#.
 
 ### Agradecimentos:
 
