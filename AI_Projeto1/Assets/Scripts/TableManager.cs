@@ -12,7 +12,6 @@ public class TableManager : MonoBehaviour
     public  List<GameObject> tableList;
     //list of avaliable tables for the players
     private List<GameObject> _availableTablesList;
-
     private void Start()
     {
         //start available tables for the player list
@@ -41,6 +40,7 @@ public class TableManager : MonoBehaviour
                 
             }
         }
+        //TODO FIX REMOVING WHILE SEARCHING
         //checks if a table is full and removes it from the available tables list 
         foreach(GameObject i in _availableTablesList)
         {
@@ -65,7 +65,7 @@ public class TableManager : MonoBehaviour
             //reserve that table;
             toReturn.GetComponent<Table>().IncrementTheTable();
         }
-        else
+        else if(_availableTablesList.Count == 0)
         {   //return a waiting spot;
             toReturn = waitingSpot;
         }
