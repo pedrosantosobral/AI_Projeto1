@@ -14,8 +14,11 @@ public class Table : MonoBehaviour
         //start with 0 agents
         _ammountOfAgents = 0; 
     }
-    
 
+    private void OnTriggerEnter(Collider other)
+    {
+        _ammountOfAgents += 1;
+    }
     private void OnTriggerExit(Collider other)
     {
         _ammountOfAgents -= 1;
@@ -31,10 +34,5 @@ public class Table : MonoBehaviour
         {
             tableIsFull = false;
         }
-    }
-
-    public void IncrementTheTable()
-    {
-        _ammountOfAgents += 1;
     }
 }

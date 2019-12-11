@@ -6,7 +6,7 @@ using System;
 
 public class TableManager : MonoBehaviour
 {
-
+    public GameObject        toReturn;
     public GameObject        waitingSpot;
     //list of all the tables
     public  List<GameObject> tableList;
@@ -20,7 +20,7 @@ public class TableManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckAvailableTables();
+        //CheckAvailableTables();
     }
 
     //adds and removes available tables
@@ -53,17 +53,13 @@ public class TableManager : MonoBehaviour
     }
 
     //gives a random free table to the player and reserves a place for that agent
-    public GameObject GiveTableToAgent()
+    public GameObject GiveTableToAgentOLD()
     {
-        GameObject toReturn;
-
         //if there is tables avaliable
         if(_availableTablesList.Count != 0)
         {
             //get a random table
             toReturn = _availableTablesList[URandom.Range(0, _availableTablesList.Count)];
-            //reserve that table;
-            toReturn.GetComponent<Table>().IncrementTheTable();
         }
         else if(_availableTablesList.Count == 0)
         {   //return a waiting spot;
@@ -72,7 +68,23 @@ public class TableManager : MonoBehaviour
 
         return (toReturn);
 
-        
-        
+    }
+
+    public GameObject GiveTableToAgent()
+    {
+        //get a random Table
+        GetNewTable();
+
+        if(toReturn.GetComponent<Table>().tableIsFull == true)
+        {
+            GetNewTable();
+        }
+
+        return (toReturn);        
+
+    }
+    private void GetNewTable()
+    {
+        toReturn = tableList[URandom.Range(0, tableList.Count)];
     }
 }

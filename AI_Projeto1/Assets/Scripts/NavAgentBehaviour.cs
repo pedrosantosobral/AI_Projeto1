@@ -426,7 +426,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
         watchingStage2.AddTransition(
            new Transition(
-               () => _stamina <= 0 && _health > 0,
+               () => _stamina <= 0 && _health >= 0,
                null,
                goRest));
 

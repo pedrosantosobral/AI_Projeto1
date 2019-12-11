@@ -16,7 +16,7 @@ NavMeshProjectSettings:
   - name: ExpensiveYeah
     cost: 8
   - name: eatingAreas
-    cost: 100
+    cost: 80
   - name: 
     cost: 1
   - name: 
