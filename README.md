@@ -4,25 +4,25 @@
 Joana Marques a21701929 <p>
 Pedro Santos a21702907
 
-##### Link do repositório GitHub : 
+##### Link do repositório GitHub : https://github.com/pedrosantosobral/AI_Projeto1
 
 ### Relatório:
 Pedro: <p>
 - Criou a pasta de projeto inicial; <p>
 - Alterou o script NavAgentBehavior adicionando variáveis para definir a
-stamina e a health dos agentes e seus métodos para as alterar, variáveis de referência 
-para os diferentes locais no mapa ; <p>
+stamina e health e velocidade dos agentes e seus métodos para as alterar, variáveis de referência para os diferentes locais no mapa; <p>
 - Fez os estados de mudança de palcos e respetivos métodos intermédios; <p>
-- Adiconou transições entre estados em movimento; <p>
+- Adicionou transições entre estados em movimento; <p>
+- Corrigiu bug da escolha de espaços verdes; <p>
 
 
 Joana: <p>
 - Fez o layout com o bake da navmesh; <p>
 - Fez os limitadores das variáveis; <p>
 - Fez os estados para comer e descansar e respetivos métodos intermédios; <p>
+- Fez o processo de escolha dos espaços verdes; <p>
 
 
-O relatório foi feito por todos os elementos do grupo.
 
 ### Introdução:
 
@@ -35,4 +35,4 @@ O relatório foi feito por todos os elementos do grupo.
 ### Agradecimentos:
 
 ### Referências:
-* Discussão sobre o projeto com alguns colegas de turma.
+* Usámos a biblioteca de FSMs criada pelo professor Nuno Fachada
