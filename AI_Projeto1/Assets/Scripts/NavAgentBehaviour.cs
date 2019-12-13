@@ -52,10 +52,14 @@ public class NavAgentBehaviour : MonoBehaviour
     private GameObject _stage1 = null;
     private GameObject _stage2 = null;
 
+    private GameObject _chillZone1 = null;
+    private GameObject _chillZone2 = null;
     private GameObject _chillZone3 = null;
     private GameObject _food = null;
 
     private Bounds _bounds;
+    private Bounds _bounds1;
+    private Bounds _bounds2;
 
     // Reference to the NavMeshAgent component
     private NavMeshAgent _agent;
@@ -80,8 +84,12 @@ public class NavAgentBehaviour : MonoBehaviour
 
         // Get reference to the NavMeshAgent component
         _agent = GetComponent<NavMeshAgent>();
+        _chillZone1 = GameObject.Find("ChillZone1");
+        _chillZone2 = GameObject.Find("ChillZone2");
         _chillZone3 = GameObject.Find("ChillZone3");
         _bounds = _chillZone3.GetComponent<Collider>().bounds;
+        _bounds1 = _chillZone1.GetComponent<Collider>().bounds;
+        _bounds2 = _chillZone2.GetComponent<Collider>().bounds;
     }
 
     private void Update()
@@ -96,11 +104,17 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _arriveFood = true;
         }
-        if (other.CompareTag("Rest"))
+        if (other.CompareTag("Rest1"))
         {
+            _agent.destination = _bounds1.RandomPositionInBounds(useY: false);
             _arriveChill = true;
         }
-        if(other.CompareTag("RestSquare"))
+        if (other.CompareTag("Rest2"))
+        {
+            _agent.destination = _bounds2.RandomPositionInBounds(useY: false);
+            _arriveChill = true;
+        }
+        if (other.CompareTag("RestSquare"))
         {
             specialArea = true;
             _agent.destination = _bounds.RandomPositionInBounds(useY: false);
@@ -128,10 +142,9 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Rest") || (other.CompareTag("RestSquare")))
+        if (other.CompareTag("Rest1") || other.CompareTag("RestSquare") || other.CompareTag("Rest2"))
         {
             _requestedGreenOnce = false;
-            specialArea = false;
         }
     }
 
@@ -178,10 +191,6 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void RestingActions()
     {
-        if(specialArea == false)
-        {
-            _agent.speed -= Time.deltaTime * 2;
-        }
         IncreaseStamina();
         DecreaseHealth();
     }

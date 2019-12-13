@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 8145049382143949124, guid: f8a362dc2c1b52749863ed7113749120,
     type: 3}
-  amountOfAgents: 800
+  amountOfAgents: 1200
   timeBetweenAgents: 0.1
 --- !u!1 &685242798
 GameObject:
@@ -2025,17 +2025,17 @@ GameObject:
   - component: {fileID: 834926455}
   - component: {fileID: 834926454}
   - component: {fileID: 834926453}
-  - component: {fileID: 834926452}
   - component: {fileID: 834926456}
+  - component: {fileID: 834926452}
   m_Layer: 0
   m_Name: ChillZone2
-  m_TagString: Rest
+  m_TagString: Rest2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 3
   m_StaticEditorFlags: 8
   m_IsActive: 1
---- !u!135 &834926452
-SphereCollider:
+--- !u!65 &834926452
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2045,7 +2045,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Size: {x: 0.56, y: 63.56, z: 0.69}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &834926453
 MeshRenderer:
@@ -2119,7 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cbac055b6234159b994af138fc824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPerAgent: 4
+  costPerAgent: 6
   ammountOfAgents: 0
 --- !u!1 &852768666
 GameObject:
@@ -3973,17 +3973,17 @@ GameObject:
   - component: {fileID: 1821509495}
   - component: {fileID: 1821509494}
   - component: {fileID: 1821509493}
-  - component: {fileID: 1821509492}
   - component: {fileID: 1821509496}
+  - component: {fileID: 1821509492}
   m_Layer: 0
   m_Name: ChillZone1
-  m_TagString: Rest
+  m_TagString: Rest1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 3
   m_StaticEditorFlags: 8
   m_IsActive: 1
---- !u!135 &1821509492
-SphereCollider:
+--- !u!65 &1821509492
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3993,7 +3993,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Size: {x: 0.56, y: 63.56, z: 0.69}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1821509493
 MeshRenderer:
@@ -4067,7 +4067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cbac055b6234159b994af138fc824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPerAgent: 4
+  costPerAgent: 6
   ammountOfAgents: 0
 --- !u!1 &1854764798
 GameObject:
@@ -4314,7 +4314,7 @@ GameObject:
   - component: {fileID: 1908483672}
   m_Layer: 0
   m_Name: expensive
-  m_TagString: Rest
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 4
   m_StaticEditorFlags: 8

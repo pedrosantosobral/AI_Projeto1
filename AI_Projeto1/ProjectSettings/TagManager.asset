@@ -7,10 +7,11 @@ TagManager:
   - Food
   - Stage1
   - Stage2
-  - Rest
   - WaitingSpot
   - Agent
   - RestSquare
+  - Rest1
+  - Rest2
   layers:
   - Default
   - TransparentFX
