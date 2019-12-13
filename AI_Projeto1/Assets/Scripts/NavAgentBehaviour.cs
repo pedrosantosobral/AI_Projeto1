@@ -15,8 +15,7 @@ public class NavAgentBehaviour : MonoBehaviour
     private GameObject   _requestedGreenReference;
     private bool         _requestedTableOnce;
     private bool         _requestedGreenOnce;
-
-    private float _agentSpeed = 8;
+    private float        _agentSpeed;
     State initialState;
 
     private bool _arriveFood;
@@ -257,6 +256,8 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void GenerateAIAgentStats()
     {
+        _agentSpeed = URandom.Range(3f, 7f);
+
         //generate stage preferences values
         _stage1TotalTime = URandom.Range(30f, 70f);
         _stage2TotalTime = 100f - _stage1TotalTime;
@@ -295,39 +296,39 @@ public class NavAgentBehaviour : MonoBehaviour
             UnblockAgent);
 
         State goEat = new State("Go Eat",
-            () => Debug.Log("vai comer"),
+            null,
             GoEatActions,
-            () => Debug.Log("chegou a comida"));
+            null);
 
         State restingState = new State("Tired",
-            () => Debug.Log("está a descansar"),
+            null,
             RestingActions,
-            () => Debug.Log("parar de descansar"));
+            null);
 
         State goRest = new State("Go Rest",
-            () => Debug.Log("vai descansar"),
+            null,
             GoRestActions,
-            () => Debug.Log("chegou ao descanso"));
+            null);
 
         State goStage1 = new State("Go Stage1",
-            () => Debug.Log("vai para o palco 1"),
+            null,
             GoStage1Actions,
-            () => Debug.Log("chegou ao palco 1"));
+            null);
 
         State goStage2 = new State("Go Stage2",
-            () => Debug.Log("vai para o palco 2"),
+            null,
             GoStage2Actions,
-            () => Debug.Log("chegou ao palco 2"));
+            null);
 
         State watchingStage1 = new State("Watching Stage1",
-            () => Debug.Log("Esta a ver o palco 1"),
+            null,
             WatchingStage1Actions,
-            () => Debug.Log("acabou de ver o palco 1"));
+            null);
 
         State watchingStage2 = new State("Watching Stage2",
-            () => Debug.Log("Esta a ver o palco 2"),
+            null,
             WatchingStage2Actions,
-            () => Debug.Log("acabou de ver o palco 2"));
+            null);
 
 
         goEat.AddTransition(
@@ -473,7 +474,8 @@ public class NavAgentBehaviour : MonoBehaviour
     
     private void MoveToRest()
     {
-        _agent.destination = _chillZone1.transform.position;
+        if(_requestedGreenReference != null)
+        _agent.destination = _requestedGreenReference.transform.position;
     }
 
     private void MoveToStage1()

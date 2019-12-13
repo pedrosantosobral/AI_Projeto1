@@ -810,7 +810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209743277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -66.5, y: 0.12, z: -47}
+  m_LocalPosition: {x: -67, y: 0.12, z: -47}
   m_LocalScale: {x: 65, y: 0.1, z: 65}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 8145049382143949124, guid: f8a362dc2c1b52749863ed7113749120,
     type: 3}
-  amountOfAgents: 500
+  amountOfAgents: 1500
   timeBetweenAgents: 0.1
 --- !u!1 &685242798
 GameObject:
@@ -1607,7 +1607,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.3
+  m_Radius: 0.91
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -2043,9 +2043,9 @@ SphereCollider:
   m_GameObject: {fileID: 834926451}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.26
+  m_Radius: 0.21
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &834926453
 MeshRenderer:
@@ -2119,7 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cbac055b6234159b994af138fc824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPerAgent: 3
+  costPerAgent: 4
   ammountOfAgents: 0
 --- !u!1 &852768666
 GameObject:
@@ -2151,8 +2151,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.83
-  m_Height: 1.5
+  m_Radius: 0.66
+  m_Height: 1.63
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &852768668
@@ -3947,6 +3947,7 @@ MonoBehaviour:
   greenSpace1: {fileID: 1821509491}
   greenSpace2: {fileID: 834926451}
   greenSpace3: {fileID: 209743277}
+  gameObjectToReturn: {fileID: 0}
 --- !u!4 &1809071365
 Transform:
   m_ObjectHideFlags: 0
@@ -3992,7 +3993,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.24
+  m_Radius: 0.21
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1821509493
 MeshRenderer:
@@ -4066,7 +4067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cbac055b6234159b994af138fc824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPerAgent: 3
+  costPerAgent: 4
   ammountOfAgents: 0
 --- !u!1 &1854764798
 GameObject:
