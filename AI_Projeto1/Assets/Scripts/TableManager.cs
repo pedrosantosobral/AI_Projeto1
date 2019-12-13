@@ -16,6 +16,7 @@ public class TableManager : MonoBehaviour
         //get a random Table
         GetNewTable();
 
+        //If a table is full, get another table
         if(toReturn.GetComponent<Table>().tableIsFull == true)
         {
             GetNewTable();
@@ -24,6 +25,7 @@ public class TableManager : MonoBehaviour
         return (toReturn);        
 
     }
+    //Get a table from the list of tables
     private void GetNewTable()
     {
         toReturn = tableList[URandom.Range(0, tableList.Count)];

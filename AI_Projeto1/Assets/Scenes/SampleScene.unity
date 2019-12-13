@@ -1575,7 +1575,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &706999642
 GameObject:
@@ -2241,8 +2241,9 @@ GameObject:
   - component: {fileID: 882206629}
   - component: {fileID: 882206628}
   - component: {fileID: 882206627}
+  - component: {fileID: 882206631}
   m_Layer: 0
-  m_Name: Field
+  m_Name: FieldWithExplosions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2320,8 +2321,22 @@ Transform:
   m_LocalScale: {x: 20, y: 1, z: 18}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882206631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882206626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e3d0cb5f0cc4e10a8ef6db4f6a54ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 2908734988628174813, guid: 7e9489e70560e44ed97bb0cfa26aab55,
+    type: 3}
 --- !u!1001 &923166928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2472,7 +2487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 69.91, y: 0, z: 0}
 --- !u!1 &983223921
 GameObject:
@@ -3711,7 +3726,7 @@ PrefabInstance:
     - target: {fileID: 8145049382143949135, guid: f8a362dc2c1b52749863ed7113749120,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8145049382143949135, guid: f8a362dc2c1b52749863ed7113749120,
         type: 3}

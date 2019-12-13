@@ -17,15 +17,18 @@ public class Table : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Add agents to the table
         _ammountOfAgents += 1;
     }
     private void OnTriggerExit(Collider other)
     {
+        //Remove agents from table
         _ammountOfAgents -= 1;
     }
 
     private void FixedUpdate()
     {
+        //If the amount of agents is bigger than 8, set the table full
         if(_ammountOfAgents >= 8)
         {
             tableIsFull = true;
