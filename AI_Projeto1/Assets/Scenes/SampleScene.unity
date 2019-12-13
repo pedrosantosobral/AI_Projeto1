@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 209743282}
   m_Layer: 0
   m_Name: ChillZone3
-  m_TagString: Rest
+  m_TagString: RestSquare
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 3
   m_StaticEditorFlags: 8
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 8145049382143949124, guid: f8a362dc2c1b52749863ed7113749120,
     type: 3}
-  amountOfAgents: 1500
+  amountOfAgents: 800
   timeBetweenAgents: 0.1
 --- !u!1 &685242798
 GameObject:

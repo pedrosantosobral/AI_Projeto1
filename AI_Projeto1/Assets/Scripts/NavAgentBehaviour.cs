@@ -9,6 +9,8 @@ using LibGameAI.FSMs;
 public class NavAgentBehaviour : MonoBehaviour
 {
 
+    bool specialArea = false;
+
     private TableManager _tableManagerReference;
     private GreenSpaceManager _greenManagerReference;
     private GameObject   _requestedTableReference;
@@ -49,9 +51,11 @@ public class NavAgentBehaviour : MonoBehaviour
     //References to locations
     private GameObject _stage1 = null;
     private GameObject _stage2 = null;
-    private GameObject _chillZone1 = null;
-    private GameObject _chillZone2 = null;
+
+    private GameObject _chillZone3 = null;
     private GameObject _food = null;
+
+    private Bounds _bounds;
 
     // Reference to the NavMeshAgent component
     private NavMeshAgent _agent;
@@ -76,13 +80,14 @@ public class NavAgentBehaviour : MonoBehaviour
 
         // Get reference to the NavMeshAgent component
         _agent = GetComponent<NavMeshAgent>();
+        _chillZone3 = GameObject.Find("ChillZone3");
+        _bounds = _chillZone3.GetComponent<Collider>().bounds;
     }
 
     private void Update()
     {
         Action actions = stateMachine.Update();
         actions?.Invoke();
-        RecalculatePath();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,6 +100,12 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _arriveChill = true;
         }
+        if(other.CompareTag("RestSquare"))
+        {
+            specialArea = true;
+            _agent.destination = _bounds.RandomPositionInBounds(useY: false);
+            _arriveChill = true;
+        }
         if (other.CompareTag("Stage1"))
         {
             _arriveStage1 = true;
@@ -103,7 +114,6 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _arriveStage2 = true;
         }
-
 
     }
 
@@ -118,9 +128,10 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Rest"))
+        if (other.CompareTag("Rest") || (other.CompareTag("RestSquare")))
         {
             _requestedGreenOnce = false;
+            specialArea = false;
         }
     }
 
@@ -167,7 +178,10 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void RestingActions()
     {
-        _agent.speed -= Time.deltaTime * 3;
+        if(specialArea == false)
+        {
+            _agent.speed -= Time.deltaTime * 2;
+        }
         IncreaseStamina();
         DecreaseHealth();
     }
@@ -283,8 +297,6 @@ public class NavAgentBehaviour : MonoBehaviour
         //Get references
         _stage1 = GameObject.Find("Stage1");
         _stage2 = GameObject.Find("Stage2");
-        _chillZone1 = GameObject.Find("ChillZone1");
-        _chillZone2 = GameObject.Find("ChillZone2");
         _food = GameObject.Find("Food");
     }
 
@@ -513,10 +525,5 @@ public class NavAgentBehaviour : MonoBehaviour
     private void RequestGreenSpace()
     {
         _requestedGreenReference = _greenManagerReference.GiveGreenSpaceToAgent();
-    }
-
-    private void RecalculatePath()
-    {
-       //gameObject.position
     }
 }
