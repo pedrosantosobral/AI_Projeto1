@@ -9,7 +9,7 @@ using LibGameAI.FSMs;
 public class NavAgentBehaviour : MonoBehaviour
 {
 
-    bool specialArea = false;
+    public bool isPanicking;
 
     private TableManager _tableManagerReference;
     private GreenSpaceManager _greenManagerReference;
@@ -69,6 +69,8 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void Start()
     {
+        isPanicking = false;
+
         //start with no requested table and green space
         _requestedTableOnce = false;
         _requestedGreenOnce = false;
@@ -116,7 +118,6 @@ public class NavAgentBehaviour : MonoBehaviour
         }
         if (other.CompareTag("RestSquare"))
         {
-            specialArea = true;
             _agent.destination = _bounds.RandomPositionInBounds(useY: false);
             _arriveChill = true;
         }
@@ -264,7 +265,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void WatchingStage2Actions()
     {
-        _agent.speed -= Time.deltaTime; ;
+        _agent.speed -= Time.deltaTime; 
         _arriveStage2 = false;
         DecreaseHealth();
         DecreaseStamina();
@@ -275,6 +276,11 @@ public class NavAgentBehaviour : MonoBehaviour
         {
             _stage2Time = 0;
         }
+    }
+
+    private void PanicActions()
+    {
+
     }
 
     private void GenerateAIAgentStats()
@@ -351,6 +357,11 @@ public class NavAgentBehaviour : MonoBehaviour
             WatchingStage2Actions,
             null);
 
+        State panic = new State("Panic",
+            null,
+            PanicActions,
+            null);
+
 
         goEat.AddTransition(
             new Transition(
@@ -358,11 +369,23 @@ public class NavAgentBehaviour : MonoBehaviour
                 null,
                 eatingState));
 
+        goEat.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
+
         goRest.AddTransition(
            new Transition(
                () => _arriveChill == true,
                null,
                restingState));
+
+        goRest.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
 
         eatingState.AddTransition(
            new Transition(
@@ -370,11 +393,23 @@ public class NavAgentBehaviour : MonoBehaviour
                null,
                goRest));
 
+        eatingState.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
+
         restingState.AddTransition(
            new Transition(
                () => (_stamina >= _maxStamina && _health <= 0),
                null,
                goEat));
+
+        restingState.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
 
         //Go to stages transitions
         eatingState.AddTransition(
@@ -408,6 +443,12 @@ public class NavAgentBehaviour : MonoBehaviour
                watchingStage1));
 
         goStage1.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
+
+        goStage1.AddTransition(
            new Transition(
                () => _health <= 0,
                null,
@@ -424,6 +465,12 @@ public class NavAgentBehaviour : MonoBehaviour
                () => _arriveStage2 == true,
                null,
                watchingStage2));
+
+        goStage2.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
 
         goStage2.AddTransition(
            new Transition(
@@ -444,6 +491,12 @@ public class NavAgentBehaviour : MonoBehaviour
                goStage2));
 
         watchingStage1.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
+
+        watchingStage1.AddTransition(
            new Transition(
                () => _health <= 0,
                null,
@@ -460,6 +513,12 @@ public class NavAgentBehaviour : MonoBehaviour
               () => _stage2Time <= 0,
               null,
               goStage1));
+
+        watchingStage2.AddTransition(
+            new Transition(
+                () => isPanicking == true,
+                null,
+                panic));
 
         watchingStage2.AddTransition(
            new Transition(
