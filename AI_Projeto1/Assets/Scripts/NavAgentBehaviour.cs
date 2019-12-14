@@ -49,13 +49,12 @@ public class NavAgentBehaviour : MonoBehaviour
     private float _staminaGainSpeed;
 
     //References to locations
-    private GameObject _stage1 = null;
-    private GameObject _stage2 = null;
-
+    private GameObject _stage1     = null;
+    private GameObject _stage2     = null;
+    private GameObject _exit1      = null;
     private GameObject _chillZone1 = null;
     private GameObject _chillZone2 = null;
     private GameObject _chillZone3 = null;
-    private GameObject _food = null;
 
     private Bounds _bounds;
     private Bounds _bounds1;
@@ -86,9 +85,11 @@ public class NavAgentBehaviour : MonoBehaviour
 
         // Get reference to the NavMeshAgent component
         _agent = GetComponent<NavMeshAgent>();
+        //get reference to locations
         _chillZone1 = GameObject.Find("ChillZone1");
         _chillZone2 = GameObject.Find("ChillZone2");
         _chillZone3 = GameObject.Find("ChillZone3");
+        _exit1 = GameObject.Find("Exit");
         _bounds = _chillZone3.GetComponent<Collider>().bounds;
         _bounds1 = _chillZone1.GetComponent<Collider>().bounds;
         _bounds2 = _chillZone2.GetComponent<Collider>().bounds;
@@ -102,6 +103,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Food"))
         {
             _arriveFood = true;
@@ -128,6 +130,12 @@ public class NavAgentBehaviour : MonoBehaviour
         if (other.CompareTag("Stage2"))
         {
             _arriveStage2 = true;
+        }
+
+
+        if (other.CompareTag("Panic"))
+        {
+            isPanicking = true;
         }
 
     }
@@ -280,7 +288,8 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void PanicActions()
     {
-
+        _agent.speed = _agentSpeed * 2;
+        _agent.destination = _exit1.transform.position;
     }
 
     private void GenerateAIAgentStats()
@@ -312,7 +321,6 @@ public class NavAgentBehaviour : MonoBehaviour
         //Get references
         _stage1 = GameObject.Find("Stage1");
         _stage2 = GameObject.Find("Stage2");
-        _food = GameObject.Find("Food");
     }
 
     private void CreateFSM()

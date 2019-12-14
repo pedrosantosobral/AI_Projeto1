@@ -12,6 +12,9 @@ TagManager:
   - RestSquare
   - Rest1
   - Rest2
+  - Stun
+  - Fire
+  - Panic
   layers:
   - Default
   - TransparentFX
