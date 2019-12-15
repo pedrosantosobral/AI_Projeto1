@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 8145049382143949124, guid: f8a362dc2c1b52749863ed7113749120,
     type: 3}
-  amountOfAgents: 800
+  amountOfAgents: 1100
   timeBetweenAgents: 0.1
 --- !u!1 &685242798
 GameObject:

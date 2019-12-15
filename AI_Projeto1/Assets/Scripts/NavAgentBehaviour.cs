@@ -332,14 +332,13 @@ public class NavAgentBehaviour : MonoBehaviour
     {
         //change agent layer
         gameObject.layer = 0;
-        //TODO NEED FIX
         if(_panicSize <= agentPanicMaxRadius)
         {
-            _panicSize =+ agentPanicMultiplier * Time.deltaTime;
+            _panicSize += _panicSize * agentPanicMultiplier;
         }
 
         //put the other agents in panic
-        Collider[] array = Physics.OverlapSphere(gameObject.transform.position, 5f, collisionLayer);
+        Collider[] array = Physics.OverlapSphere(gameObject.transform.position, _panicSize, collisionLayer);
         foreach (Collider i in array)
         {
             i.gameObject.GetComponent<NavAgentBehaviour>().isPanicking = true;

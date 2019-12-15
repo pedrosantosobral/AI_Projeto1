@@ -135,7 +135,7 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 256
-  agentPanicMultiplier: 2
+  agentPanicMultiplier: 0.13
   agentPanicMaxRadius: 10
   stunnedTime: 2
   isPanicking: 0
