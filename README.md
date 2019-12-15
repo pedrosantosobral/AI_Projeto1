@@ -6,7 +6,7 @@ Pedro Santos a21702907
 
 ##### Link do repositório GitHub : https://github.com/pedrosantosobral/AI_Projeto1
 
-### Relatório:
+### Divisão de tarefas:
 Pedro: <p>
 - Criou a pasta de projeto inicial; <p>
 - Alterou o script NavAgentBehavior adicionando variáveis para definir a
@@ -23,6 +23,10 @@ Joana: <p>
 - Fez os limitadores das variáveis; <p>
 - Fez os estados para comer e descansar e respetivos métodos intermédios; <p>
 - Fez o processo de escolha dos espaços verdes; <p>
+- Fez o estado de panico e respetivas transições; <p>
+- Adicionou a instaciação de uma explosão num local aleatório; <p>
+- Comentou algumas classes; <p> 
+- Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; <p>
 
 
 
