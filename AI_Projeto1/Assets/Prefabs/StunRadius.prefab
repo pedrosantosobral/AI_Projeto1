@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1751175782701547882}
   - component: {fileID: 6209117040935255442}
   m_Layer: 0
-  m_Name: StunRadios
+  m_Name: StunRadius
   m_TagString: Stun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6886746087924155929}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

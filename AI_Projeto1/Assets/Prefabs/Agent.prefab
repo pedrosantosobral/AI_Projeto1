@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8145049382143949122}
   - component: {fileID: 8145049382143949123}
   - component: {fileID: 228238627673548190}
-  - component: {fileID: 7439301760930774658}
   - component: {fileID: 8183559180660941939}
   - component: {fileID: -4690281813480210145}
+  - component: {fileID: 8883108451817626538}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Agent
@@ -132,21 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a9cc9f31475f64885e965daba28ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _panicTriggerReference: {fileID: 8883108451817626538}
+  agentPanicSpreadSpeed: 1.02
+  stunnedTime: 2
   isPanicking: 0
---- !u!136 &7439301760930774658
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8145049382143949124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.54
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: -0.29, z: -0.00000008940697}
 --- !u!54 &8183559180660941939
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,3 +168,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!135 &8883108451817626538
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8145049382143949124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.56
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

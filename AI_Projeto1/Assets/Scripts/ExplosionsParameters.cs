@@ -79,7 +79,7 @@ public class ExplosionsParameters : MonoBehaviour
             
             if(_panicReference != null)
             {
-                _panicReference.transform.localScale += _fireSpeedVector * 4f;
+                _panicReference.transform.localScale += _fireSpeedVector;
             }
             
         }

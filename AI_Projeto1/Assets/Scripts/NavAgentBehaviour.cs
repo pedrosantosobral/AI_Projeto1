@@ -8,22 +8,42 @@ using LibGameAI.FSMs;
 
 public class NavAgentBehaviour : MonoBehaviour
 {
+    //get trigger collider to then spread panic to other agents
+    public SphereCollider _panicTriggerReference;
+    //speed of panic spread to other agents
+    private float _agentPanicSpreadSpeed;
+    //is stunned
+    private bool _isStunned;
+    //stunned total time
+    public float stunnedTime;
 
-    public bool isPanicking;
-
+    //Reference too the table and green space managers
     private TableManager _tableManagerReference;
     private GreenSpaceManager _greenManagerReference;
+    
+    //copy of the requested table
     private GameObject   _requestedTableReference;
+    //copy of the requested green space
     private GameObject   _requestedGreenReference;
+    
+    //bools for blocking the agent from making more than one request
     private bool         _requestedTableOnce;
     private bool         _requestedGreenOnce;
+    
+    //agent speed variable
     private float        _agentSpeed;
+
+    //initial state to be added
     State initialState;
 
+    //bools to check if agent reached the destination, change state
     private bool _arriveFood;
     private bool _arriveChill;
     private bool _arriveStage1;
     private bool _arriveStage2;
+
+    //is in panic, change state variable
+    public bool isPanicking;
 
     //stage timers variables
 
@@ -56,6 +76,7 @@ public class NavAgentBehaviour : MonoBehaviour
     private GameObject _chillZone2 = null;
     private GameObject _chillZone3 = null;
 
+    //references to green spaces bounds, to get random positions
     private Bounds _bounds;
     private Bounds _bounds1;
     private Bounds _bounds2;
@@ -68,7 +89,9 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void Start()
     {
+        //start with no panic
         isPanicking = false;
+        _agentPanicSpreadSpeed = 1.04f;
 
         //start with no requested table and green space
         _requestedTableOnce = false;
@@ -103,43 +126,67 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //check if agent reached diferent destinations, change states while not in panic
 
-        if (other.CompareTag("Food"))
+        if(isPanicking == false)
         {
-            _arriveFood = true;
-        }
-        if (other.CompareTag("Rest1"))
-        {
-            _agent.destination = _bounds1.RandomPositionInBounds(useY: false);
-            _arriveChill = true;
-        }
-        if (other.CompareTag("Rest2"))
-        {
-            _agent.destination = _bounds2.RandomPositionInBounds(useY: false);
-            _arriveChill = true;
-        }
-        if (other.CompareTag("RestSquare"))
-        {
-            _agent.destination = _bounds.RandomPositionInBounds(useY: false);
-            _arriveChill = true;
-        }
-        if (other.CompareTag("Stage1"))
-        {
-            _arriveStage1 = true;
-        }
-        if (other.CompareTag("Stage2"))
-        {
-            _arriveStage2 = true;
-        }
+            if (other.CompareTag("Food"))
+            {
+                _arriveFood = true;
+            }
+            if (other.CompareTag("Rest1"))
+            {
+                //get random position on green zone
+                _agent.destination = _bounds1.RandomPositionInBounds(useY: false);
+                _arriveChill = true;
+            }
+            if (other.CompareTag("Rest2"))
+            {
+                //get random position on green zone
+                _agent.destination = _bounds2.RandomPositionInBounds(useY: false);
+                _arriveChill = true;
+            }
+            if (other.CompareTag("RestSquare"))
+            {
+                //get random position on green zone
+                _agent.destination = _bounds.RandomPositionInBounds(useY: false);
+                _arriveChill = true;
+            }
+            if (other.CompareTag("Stage1"))
+            {
+                _arriveStage1 = true;
+            }
+            if (other.CompareTag("Stage2"))
+            {
+                _arriveStage2 = true;
+            }
 
+            //if agent enters in panic radius
+            if (other.CompareTag("Panic"))
+            {
+                //enter in panic
+                isPanicking = true;
+            }
 
-        if (other.CompareTag("Panic"))
-        {
-            isPanicking = true;
+            //if agent enters in stun radius
+            if (other.CompareTag("Stun"))
+            {
+                //stun agent for some time
+                _isStunned = true;
+            }
+        }
+        
+        //if agent is in panic, make other agents panic too
+        if(isPanicking == true)
+        {   
+           //put the other agents in panic
+           if(other.gameObject.GetComponent<NavAgentBehaviour>()!= null)
+           other.gameObject.GetComponent<NavAgentBehaviour>().isPanicking = true;          
         }
 
     }
 
+    //if agent is waiting for a table, request table
     private void OnTriggerStay(Collider other)
     {
         //while is on requesting spot allow table requests
@@ -149,6 +196,7 @@ public class NavAgentBehaviour : MonoBehaviour
         }
     }
 
+    //allow agent to request green space again if he already rested
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Rest1") || other.CompareTag("RestSquare") || other.CompareTag("Rest2"))
@@ -159,6 +207,7 @@ public class NavAgentBehaviour : MonoBehaviour
 
 
 
+    //decrease agent stamina
     private void DecreaseStamina()
     {
         _stamina -= _staminaLoseSpeed * Time.fixedDeltaTime;
@@ -168,7 +217,7 @@ public class NavAgentBehaviour : MonoBehaviour
         }
     }
 
-
+    //decrease agent health
     private void DecreaseHealth()
     {
         _health -= _healthLoseSpeed * Time.fixedDeltaTime;
@@ -178,6 +227,7 @@ public class NavAgentBehaviour : MonoBehaviour
         }
     }
 
+    //increase agent stamina
     private void IncreaseStamina()
     {
         _stamina += _staminaGainSpeed * Time.fixedDeltaTime;
@@ -188,6 +238,7 @@ public class NavAgentBehaviour : MonoBehaviour
         _arriveChill = false;
     }
 
+    //increase agent health
     private void IncreaseHealth()
     {
         _health += _healthGainSpeed * Time.fixedDeltaTime;
@@ -288,8 +339,20 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void PanicActions()
     {
-        _agent.speed = _agentSpeed * 2;
+        //if agent is on explosion sun radius
+        if(_isStunned == true)
+        {
+            StunAgentForSomeTime();
+        }
+        else
+        {
+            _agent.speed = _agentSpeed * 2;
+        }
+
         _agent.destination = _exit1.transform.position;
+
+        Invoke("ExpandPanic", 2f);
+      
     }
 
     private void GenerateAIAgentStats()
@@ -601,5 +664,23 @@ public class NavAgentBehaviour : MonoBehaviour
     private void RequestGreenSpace()
     {
         _requestedGreenReference = _greenManagerReference.GiveGreenSpaceToAgent();
+    }
+
+    private void StunAgentForSomeTime()
+    {
+        _agent.speed = 0;
+        stunnedTime -= Time.deltaTime;
+        if (stunnedTime <= 0)
+        {
+            _agent.speed = _agentSpeed / 2;
+        }
+
+    }
+    private void ExpandPanic()
+    {
+        if (_panicTriggerReference.radius < 6)
+        {
+            _panicTriggerReference.radius *= _agentPanicSpreadSpeed;
+        }
     }
 }
