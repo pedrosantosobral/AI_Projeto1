@@ -16,6 +16,8 @@ stamina e health e velocidade dos agentes e seus métodos para as alterar, vari�
 - Corrigiu bug da escolha de espaços verdes; <p>
 - Fez os agentes espalharem-se pelas zonas de descanso <p>
 - Fez a parte inicial da introdução; <p>
+- Fez o comportamento das explosões e da fuga e morte dos agentes; <p>
+- Adicionou o pânico entre os agentes e suas melhorias de performance; <p>
 
 
 Joana: <p>
@@ -105,9 +107,15 @@ de um incêndio. <p>
 ### Conclusões:
 
 ### Agradecimentos:
-Queremos agradecer ao professor Nuno Fachada por nos ter disponibilizado a biblioteca com o código das Finite State Machines e pela ajuda dada na resolução de alguns problemas que tivemos durante a implementação. <p>
-Queremos agradecer também ao nosso colega Rui Martins que nos ajudou a implementar a dispersão dos agentes nas zonas de descanso e nos disponibilizou um método de extensão da classe Bounds. <p>
+Queremos agradecer ao professor Nuno Fachada por nos ter disponibilizado a biblioteca 
+com o código das Finite State Machines e pela ajuda dada na resolução de alguns 
+problemas que tivemos durante a implementação. <p>
+Queremos agradecer também ao nosso colega Rui Martins que nos ajudou a implementar 
+a dispersão dos agentes nas zonas de descanso e nos disponibilizou um método de 
+extensão da classe Bounds. <p>
 
 ### Referências:
 * Usámos a biblioteca de FSMs criada pelo professor Nuno Fachada
 * Usámos um método de extensão da classe Bounds disponibilizado por Rui Martins
+* Wagner, N. e Agrawal, V. (2014). An agent-based simulation system for concert
+venue crowd evacuation modeling in the presence of a fire disaster.
