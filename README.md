@@ -28,6 +28,7 @@ Joana: <p>
 - Comentou algumas classes; <p> 
 - Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; <p>
 - Fez os agradecimentos; <p>
+- Pesquisou sobre o estudo de Wagner e Agrawal; <p>
 
 
 
@@ -69,7 +70,21 @@ Estes toolkits têm ferramentas para fazer o design de agentes e dos ambientes e
 que eles interagem.
 Já há vários estudos que envolvem modelos de agentes para simulações de multidões
 e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
-2- evacuações de ruas, 3- comportamentos de multidões durante uma evacuação.
+2- evacuações de ruas, 3- comportamentos de multidões durante uma evacuação. <p>
+
+No modelo de Wagner e Agrawal é usada uma abordagem em que os agentes individuais e autónomos interagem entre si e com o ambiente. Os agentes retratam pessoas que são colocadas ao pé dos palcos, caminhos e outros lugares e que se tentam mover rapidamente para uma saída enquanto evitam um ou mais fogos. <p>
+O modelo tem 3 componentes mais importantes: o ambiente, as dinâmicas do fogo e o movimento das pessoas. <p>
+O ambiente, como já foi dito anteriormente é bastante customizável, podendo
+decidir onde são os palcos, saídas e entradas e ainda os lugares sentados de
+um auditório de concertos. <p>
+A cada fogo pode ser especificado o seu raio de propagação e produção de fumo.
+Os agentes podem-se aleijar ficando queimados com o fogo ou por inalação de fumo. Estes dados são então guardados. <p>
+Em relação ao movimento dos agentes, este têm apenas um objetivo, sair do recinto sem passar pelo fogo. Assim, estes movimentos consistem em 3 componentes: seleção da saída, mover-se do seu lugar para um caminho e mover-se pelo caminho até à saída mais próxima. <p>
+Para o estudo efetuado por Wagner e Agrawal, foram realizadas duas experiências,
+uma para um auditório e outro para um estádio.
+O porpósito desde sistema é para permitir a criação de multiplos cenários para
+testes e avaliação de medidas de segurança para minimizar os riscos no caso
+de um incêndio. <p>
 
 
 
