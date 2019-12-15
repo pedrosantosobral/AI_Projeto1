@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8183559180660941939}
   - component: {fileID: -4690281813480210145}
   - component: {fileID: 8883108451817626538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Agent
   m_TagString: Agent
   m_Icon: {fileID: 0}
@@ -132,8 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a9cc9f31475f64885e965daba28ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panicTriggerReference: {fileID: 8883108451817626538}
-  agentPanicSpreadSpeed: 1.02
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  agentPanicMultiplier: 2
+  agentPanicMaxRadius: 10
   stunnedTime: 2
   isPanicking: 0
 --- !u!54 &8183559180660941939

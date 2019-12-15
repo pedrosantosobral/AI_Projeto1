@@ -8,10 +8,11 @@ using LibGameAI.FSMs;
 
 public class NavAgentBehaviour : MonoBehaviour
 {
-    //get trigger collider to then spread panic to other agents
-    public SphereCollider _panicTriggerReference;
-    //speed of panic spread to other agents
-    private float _agentPanicSpreadSpeed;
+    public LayerMask collisionLayer;
+
+    public float agentPanicMultiplier;
+    public float agentPanicMaxRadius;
+    private float _panicSize = 1;
     //is stunned
     private bool _isStunned;
     //stunned total time
@@ -91,7 +92,6 @@ public class NavAgentBehaviour : MonoBehaviour
     {
         //start with no panic
         isPanicking = false;
-        _agentPanicSpreadSpeed = 1.04f;
 
         //start with no requested table and green space
         _requestedTableOnce = false;
@@ -175,15 +175,6 @@ public class NavAgentBehaviour : MonoBehaviour
                 _isStunned = true;
             }
         }
-        
-        //if agent is in panic, make other agents panic too
-        if(isPanicking == true)
-        {   
-           //put the other agents in panic
-           if(other.gameObject.GetComponent<NavAgentBehaviour>()!= null)
-           other.gameObject.GetComponent<NavAgentBehaviour>().isPanicking = true;          
-        }
-
     }
 
     //if agent is waiting for a table, request table
@@ -339,8 +330,23 @@ public class NavAgentBehaviour : MonoBehaviour
 
     private void PanicActions()
     {
+        //change agent layer
+        gameObject.layer = 0;
+        //TODO NEED FIX
+        if(_panicSize <= agentPanicMaxRadius)
+        {
+            _panicSize =+ agentPanicMultiplier * Time.deltaTime;
+        }
+
+        //put the other agents in panic
+        Collider[] array = Physics.OverlapSphere(gameObject.transform.position, 5f, collisionLayer);
+        foreach (Collider i in array)
+        {
+            i.gameObject.GetComponent<NavAgentBehaviour>().isPanicking = true;
+        }
+
         //if agent is on explosion sun radius
-        if(_isStunned == true)
+        if (_isStunned == true)
         {
             StunAgentForSomeTime();
         }
@@ -350,9 +356,7 @@ public class NavAgentBehaviour : MonoBehaviour
         }
 
         _agent.destination = _exit1.transform.position;
-
-        Invoke("ExpandPanic", 2f);
-      
+   
     }
 
     private void GenerateAIAgentStats()
@@ -675,12 +679,5 @@ public class NavAgentBehaviour : MonoBehaviour
             _agent.speed = _agentSpeed / 2;
         }
 
-    }
-    private void ExpandPanic()
-    {
-        if (_panicTriggerReference.radius < 6)
-        {
-            _panicTriggerReference.radius *= _agentPanicSpreadSpeed;
-        }
     }
 }
