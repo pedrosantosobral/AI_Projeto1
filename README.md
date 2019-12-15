@@ -27,6 +27,7 @@ Joana: <p>
 - Adicionou a instaciação de uma explosão num local aleatório; <p>
 - Comentou algumas classes; <p> 
 - Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; <p>
+- Fez os agradecimentos; <p>
 
 
 
@@ -79,6 +80,8 @@ e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
 ### Conclusões:
 
 ### Agradecimentos:
+Queremos agradecer ao professor Nuno Fachada por nos ter disponibilizado a biblioteca com o código das Finite State Machines e pela ajuda dada na resolução de alguns problemas que tivemos durante a implementação. <p>
+Queremos agradecer também ao nosso colega Rui Martins que nos ajudou a implementar a dispersão dos agentes nas zonas de descanso e nos disponibilizou um método de extensão da classe Bounds. <p>
 
 ### Referências:
 * Usámos a biblioteca de FSMs criada pelo professor Nuno Fachada
