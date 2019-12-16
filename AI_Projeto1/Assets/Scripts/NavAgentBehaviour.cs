@@ -18,9 +18,10 @@ public class NavAgentBehaviour : MonoBehaviour
     //stunned total time
     public float stunnedTime;
 
-    //Reference too the table and green space managers
+    //Reference too the table, green space and extra exit managers
     private TableManager _tableManagerReference;
     private GreenSpaceManager _greenManagerReference;
+    private ExitManager _extraExitManagerReference;
     
     //copy of the requested table
     private GameObject   _requestedTableReference;
@@ -102,6 +103,8 @@ public class NavAgentBehaviour : MonoBehaviour
 
         //get reference of green space
         _greenManagerReference = GameObject.Find("GreenSpaceManager").GetComponent<GreenSpaceManager>();
+
+        _extraExitManagerReference = GameObject.Find("ExitManager").GetComponent<ExitManager>();
 
         GenerateAIAgentStats();
         CreateFSM();
@@ -354,7 +357,22 @@ public class NavAgentBehaviour : MonoBehaviour
             _agent.speed = _agentSpeed * 2;
         }
 
-        _agent.destination = _exit1.transform.position;
+        if (_extraExitManagerReference.extraExit == true)
+        {
+            if (Vector3.Distance(gameObject.transform.position,_exit1.transform.position) <
+                Vector3.Distance(gameObject.transform.position, _extraExitManagerReference.exit.transform.position))
+            {
+                _agent.destination = _exit1.transform.position;
+            }
+            else
+            {
+                _agent.destination = _extraExitManagerReference.exit.transform.position;
+            }
+        }
+        else
+        {
+            _agent.destination = _exit1.transform.position;
+        }  
    
     }
 
