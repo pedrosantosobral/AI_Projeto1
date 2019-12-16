@@ -57,6 +57,9 @@ difícil e caro simular e reproduzir todos os cenários de perigo com pessoas re
 são feitos estudos com agentes virtuais para imitar os eventuais comportamentos
 de multidões podendo assim criar estratégias para evitar um desfecho mais grave
 em situações de perigo. <p>
+A inteligência artificial é amplamente utilizado para imitar parte do 
+comportamento humano em computador, como redes neurais e
+sistemas especializados (Sagun et al (2011)).
 Modelação de agentes é a melhor técnica para simulação de múltiplos sistemas de
 objetos porque consegue capturar dinâmicas altamente complexas que são comuns no
 mundo real (Borshchev e Filippov, 2004) e então observá-las. Esta técnica é uma 
@@ -78,7 +81,7 @@ e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
 2- evacuações de ruas, 3- comportamentos de multidões durante uma evacuação. <p>
 
 **Wagner e Agrawal** <p>
-	
+
 No modelo de Wagner e Agrawal é usada uma abordagem em que os agentes individuais 
 e autónomos interagem entre si e com o ambiente. Os agentes retratam pessoas que 
 são colocadas ao pé dos palcos, caminhos e outros lugares e que se tentam mover 
@@ -101,6 +104,25 @@ O porpósito desde sistema é para permitir a criação de multiplos cenários p
 testes e avaliação de medidas de segurança para minimizar os riscos no caso
 de um incêndio. <p>
 
+**Ren et al**
+
+O modelo de Ren et al. (2009) usa agentes para simular uma evacuação na ocorrência
+de uma explosão. Consideraram 5 hipóteses ou factos que são considerados para um
+incêndio:
+* Em situações de uma evacuação de emergência, as pessoas estão em pânico e
+nervosas por isso tendem a ter comportamentos irracionais.
+* As pessoas tentam mover-se o mais rápido que conseguem o que é muito mais
+rápido que o normal.
+* O fumo provoca uma dificuldade em respirar e dores nos olhos. Quando o fogo fica
+mais denso é então muito dificil ou mesmo impossóvel ver por onde se anda.
+* Começam-se a empurrar e são empurradas pelos outros.
+* As pessoas que vão a correr para as saídas começam a tropeçar nas pessoas que já
+cairam e por isso a multidão abranda.
+Neste modelo é tido em conta diversos tipos de pessoas (homens, mulheres, crianças,
+seguranças e pessoas responsáveis pelas evacuações) e também são tidas em conta
+vários atributos dos agentes (idade, velocidade, escala de pânico, etc) o que não 
+é visto nos modelos de simulação mais tradicionais.
+
 
 
 ### Metodologia:
@@ -122,3 +144,8 @@ extensão da classe Bounds. <p>
 * Usámos um método de extensão da classe Bounds disponibilizado por Rui Martins
 * Wagner, N. e Agrawal, V. (2014). An agent-based simulation system for concert
 venue crowd evacuation modeling in the presence of a fire disaster.
+* Ren C., Yang C., Jin S. (2009) Agent-Based Modeling and Simulation on
+Emergency Evacuation. In: Zhou J. (eds) Complex Sciences. Complex 2009.
+Lecture Notes of the Institute for Computer Sciences, Social Informatics and
+Telecommunications Engineering, vol 5. Springer, Berlin, Heidelberg
+https://doi.org/10.1007/978-3-642-02469-6_25
