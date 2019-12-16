@@ -59,9 +59,10 @@ de multidões podendo assim criar estratégias para evitar um desfecho mais grav
 em situações de perigo. <p>
 Modelação de agentes é a melhor técnica para simulação de múltiplos sistemas de
 objetos porque consegue capturar dinâmicas altamente complexas que são comuns no
-mundo real (Borshchev e Filippov, 2004). Esta técnica é uma abordagem em que cada
-entidade do sistema que é modelado é exclusivamente representada como um agente
-independente no que respeita a tomadas de decisão (Fachada et al, 2015).
+mundo real (Borshchev e Filippov, 2004) e então observá-las. Esta técnica é uma 
+abordagem em que cada entidade do sistema que é modelado é exclusivamente 
+representada como um agente independente no que respeita a tomadas de 
+decisão (Fachada et al, 2015).
 O comportamento global do sistema é o resultado de relacionamentos simples e
 auto-organizados entre os agentes(Fachada, 2008). <p>
 Muita densidade de pessoas e poucas saídas é uma das características comuns dos
@@ -76,6 +77,8 @@ Já há vários estudos que envolvem modelos de agentes para simulações de mul
 e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
 2- evacuações de ruas, 3- comportamentos de multidões durante uma evacuação. <p>
 
+**Wagner e Agrawal** <p>
+	
 No modelo de Wagner e Agrawal é usada uma abordagem em que os agentes individuais 
 e autónomos interagem entre si e com o ambiente. Os agentes retratam pessoas que 
 são colocadas ao pé dos palcos, caminhos e outros lugares e que se tentam mover 
