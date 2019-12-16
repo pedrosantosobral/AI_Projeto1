@@ -80,6 +80,23 @@ Já há vários estudos que envolvem modelos de agentes para simulações de mul
 e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
 2- evacuações de ruas, 3- comportamentos de multidões durante uma evacuação. <p>
 
+** Sagun et al **
+
+No estudo realizado por Sagun et al (2011) são identificados problemas de projeto
+de edifícios associados a emergências para melhorar a segurança durante eventos
+extremos. <p>
+O objetivo desta pesquisa é aumentar a segurança através de um design aprimorado
+do ambiente construído.<p>
+Mas qual foi o papel da simulação em computadores? <p>
+As simulações em computador podem ajudar no desenvolvimento de diretrizes de
+projeto de construção que considerem os principais fatores (como número
+de rotas e portas, distâncias de viagem, dimensão das rotas e portas, etc.).
+Nos primeiros estudos de fluxo de multidões, foram consideradas a capacidade de
+carga dos elementos do edifício, taxas de fluxo e tipos de rotas de saída,
+com foco na largura e capacidade das saídas. No entanto, é necessário focar na 
+compreensão das relações entre pessoas e o ambiente construído (Sagun et al 2011).
+
+
 **Wagner e Agrawal** <p>
 
 No modelo de Wagner e Agrawal é usada uma abordagem em que os agentes individuais 
