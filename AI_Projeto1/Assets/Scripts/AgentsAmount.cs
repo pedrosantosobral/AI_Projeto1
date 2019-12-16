@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using URandom = UnityEngine.Random;
+using TMPro;
 
 public class AgentsAmount : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class AgentsAmount : MonoBehaviour
     public int          amountOfAgents;
     //Time between agents spawn
     public float        timeBetweenAgents;
+    // Number os agents killed
+    public int          agentsKilled;
+    //Fire reference
+    private GameObject fireReference;
+
+    public TextMeshProUGUI textPro;
+
 
     void Start()
     {
@@ -29,6 +37,19 @@ public class AgentsAmount : MonoBehaviour
             i++;
             //Wait time between spawn to spawn another
             yield return new WaitForSeconds(timeBetweenAgents);
+        }
+    }
+
+    private void Update()
+    {
+        if (fireReference == null)
+        {
+            fireReference = GameObject.Find("Fire(Clone)");
+        }
+        else
+        {
+            agentsKilled = fireReference.GetComponent<KillAgentsAndCount>().agentsKilled;
+            textPro.text = agentsKilled.ToString();
         }
     }
 }
