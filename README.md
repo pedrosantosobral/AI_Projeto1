@@ -35,6 +35,8 @@ Joana: <p>
 - Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; <p>
 - Pesquisou sobre o estudo de Wagner e Agrawal e sobre o estudo de Ren et al; <p>
 - Fez os agradecimentos; <p>
+- Fez a parte da metodologia que fala dos estados principais e o fluxograma do 
+funcionamento da mudança entre palcos; <p>
 
 
 
@@ -164,6 +166,20 @@ os agentes quando entram no recinto dirigem-se maioritariamente para os palcos.
 Ao longo do tempo vão trocando de palcos se a sua health ou stamina não forem 0. <p>
 O fluxograma mostra o funcionamento da mudança entre palcos. <p>
 ![StagesSwitch](Stage.svg)
+Enquanto os agentes estão a ver os palcos, a sua health e stamina está a baixar 
+e eventualmente quando estas chegam a 0, o estado do agente muda para ir descansar 
+ou comer. <p>
+Quando a health de um agente chega a 0, ele muda o seu estado para ir comer.
+Dirige-se à zona da comida e procura uma mesa livre (temos uma lista de mesas e o
+agente está sempre a procurar uma mesa livre para depois se dirigir para lá).
+Passa algum tempo a comer, incrementando a sua health com o passar do tempo e ao 
+mesmo tempo, a sua stamina continua a baixar. <p>
+O mesmo acontece com a sua stamina. Se esta chegar a 0, o agente muda o seu
+estado e move-se para uma zona verde para descansar onde a stamina começa a aumentar 
+e a sua health a baixar. Nesta zona de espaços verdes, os agentes movem-se para um 
+sitio aleatório do espaço. <p>
+Eventualmente, quando a sua health e stamina são diferentes de 0, os agentes voltam 
+a dirigir-se para um dos palcos.<p>
 
 ### Resultados e discussão:
 
