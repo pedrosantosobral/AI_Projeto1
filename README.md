@@ -8,38 +8,38 @@ Pedro Santos a21702907
 
 ### Divisão de tarefas:
 Pedro: <p>
-- Criou a pasta de projeto inicial; <p>
+- Criou a pasta de projeto inicial; 
 - Alterou o script NavAgentBehavior adicionando variáveis para definir a
 stamina e health e velocidade dos agentes e seus métodos para as alterar, variáveis 
-de referência para os diferentes locais no mapa; <p>
-- Fez os estados de mudança de palcos e respetivos métodos intermédios; <p>
-- Adicionou transições entre estados em movimento; <p>
-- Corrigiu bug da escolha de espaços verdes; <p>
-- Fez os agentes espalharem-se pelas zonas de descanso <p>
-- Fez a parte inicial da introdução; <p>
-- Fez o comportamento das explosões e da fuga e morte dos agentes; <p>
-- Adicionou o pânico entre os agentes e suas melhorias de performance; <p>
-- Pesquisou sobre o estudo de Sagun et al; <p>
-- Na metodologia escreveu sobre as explosões e os valores parametrizáveis; <p>
+de referência para os diferentes locais no mapa; 
+- Fez os estados de mudança de palcos e respetivos métodos intermédios; 
+- Adicionou transições entre estados em movimento; 
+- Corrigiu bug da escolha de espaços verdes; 
+- Fez os agentes espalharem-se pelas zonas de descanso 
+- Fez a parte inicial da introdução; 
+- Fez o comportamento das explosões e da fuga e morte dos agentes; 
+- Adicionou o pânico entre os agentes e suas melhorias de performance; 
+- Pesquisou sobre o estudo de Sagun et al; 
+- Na metodologia escreveu sobre as explosões e os valores parametrizáveis; 
 - Fez os cometários para documentação XML e gerou a documentação em Doxygen.
 
 
 Joana: <p>
-- Fez o layout com o bake da navmesh; <p>
-- Fez os limitadores das variáveis; <p>
-- Fez os estados para comer e descansar e respetivos métodos intermédios; <p>
-- Fez o processo de escolha dos espaços verdes; <p>
-- Fez o estado de panico e respetivas transições; <p>
-- Adicionou a instaciação de uma explosão num local aleatório; <p>
-- Comentou algumas classes; <p> 
+- Fez o layout com o bake da navmesh; 
+- Fez os limitadores das variáveis; 
+- Fez os estados para comer e descansar e respetivos métodos intermédios; 
+- Fez o processo de escolha dos espaços verdes; 
+- Fez o estado de panico e respetivas transições; 
+- Adicionou a instaciação de uma explosão num local aleatório; 
+- Comentou algumas classes; 
 - Fez a UI para contar o número de agentes mortos;
 - Fez a implementação da saída extra;
-- Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; <p>
-- Pesquisou sobre o estudo de Wagner e Agrawal e sobre o estudo de Ren et al; <p>
-- Fez os agradecimentos; <p>
+- Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; 
+- Pesquisou sobre o estudo de Wagner e Agrawal e sobre o estudo de Ren et al; 
+- Fez os agradecimentos; 
 - Fez a parte da metodologia que fala dos estados principais e o fluxograma do 
-funcionamento da mudança entre palcos; <p>
-- Fez os resultados e discussão; <p>
+funcionamento da mudança entre palcos; 
+- Fez os resultados e discussão; 
 - Fez a conclusão.
 
 
@@ -52,10 +52,10 @@ Cada agente tem de ter um comportamento próprio tentando assemelhar-se ao máxi
 a uma situação real de festival e as suas reações a certos eventos. <p>
 Para resolver este problema usámos Finite State Machines de forma a dar diferentes 
 estados aos agentes. Associados a estes estados temos transições entre eles. <p>
-Um dos principais objetivos deste projeto é conseguir implementar as states
+Um dos principais objetivos deste projeto era conseguir implementar as states
 machines de forma a ter as reações dos agentes a certos acontecimentos.
-Ao chegar ao fim do projeto, o nosso objetivo é conseguir implementar tudo aquilo
-que pretendemos e obter os comportamentos mais realistas possiveis. <p>
+Ao chegar ao fim do projeto, o nosso objetivo era conseguir implementar tudo aquilo
+que pretendemos e obter os comportamentos mais realistas possíveis. <p>
 
 Para além de fazer este simulador, foi-nos pedido também uma pesquisa sobre este
 tipo de simulações. <p>
@@ -66,9 +66,8 @@ a pensar apenas em si e nos seus interesses, querem-se salvar sem se preocupar
 com os outros e isto pode levar muitas vezes a desfechos graves. Por ser tão
 difícil e caro simular e reproduzir todos os cenários de perigo com pessoas reais,
 são feitos estudos com agentes virtuais para imitar os eventuais comportamentos
-de multidões podendo assim criar estratégias para evitar um desfecho mais grave
-em situações de perigo. <p>
-A inteligência artificial é amplamente utilizado para imitar parte do 
+de multidões podendo assim criar estratégias para evitar um desfecho menos bom. <p>
+A inteligência artificial é amplamente utilizada para imitar parte do 
 comportamento humano em computador, como redes neurais e
 sistemas especializados (Sagun et al (2011)).
 Modelação de agentes é a melhor técnica para simulação de múltiplos sistemas de
@@ -78,11 +77,11 @@ abordagem em que cada entidade do sistema que é modelado é exclusivamente
 representada como um agente independente no que respeita a tomadas de 
 decisão (Fachada et al, 2015).
 O comportamento global do sistema é o resultado de relacionamentos simples e
-auto-organizados entre os agentes(Fachada, 2008). <p>
+auto-organizados entre os agentes (Fachada, 2008). <p>
 Muita densidade de pessoas e poucas saídas é uma das características comuns dos
 locais de concertos e a sua combinação é um problema para a segurança das pessoas
 (Wagner & Agrawal, 2014). <p>
-Há alguns toolkits que são usados para estas implementações de simulaçoes 
+Há alguns toolkits que são usados para estas implementações de simulações 
 baseadas em agentes que são: Swarm, Repast (Recursive Porous Agent
 Simulation Toolkit), MASON (Multi-Agent Simulator of Neighborhoods) e NetLogo.
 Estes toolkits têm ferramentas para fazer o design de agentes e dos ambientes em
@@ -94,8 +93,8 @@ e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
 **Sagun et al** <p>
 
 No estudo realizado por Sagun et al (2011) são identificados problemas de projeto
-de edifícios associados a emergências para melhorar a segurança durante eventos
-extremos. <p>
+de edifícios associados a emergências, para melhorar a segurança durante eventos
+extremos.
 O objetivo desta pesquisa é aumentar a segurança através de um design aprimorado
 do ambiente construído.<p>
 Mas qual foi o papel da simulação em computadores? <p>
@@ -111,7 +110,8 @@ compreensão das relações entre pessoas e o ambiente construído (Sagun et al 
 **Wagner e Agrawal** <p>
 
 No modelo de Wagner e Agrawal é usada uma abordagem em que os agentes individuais 
-e autónomos interagem entre si e com o ambiente. Os agentes retratam pessoas que 
+e autónomos interagem entre si e com o ambiente. Este estudo é uma simulação de 
+agentes num concerto na presença de um fogo. Os agentes retratam pessoas que 
 são colocadas ao pé dos palcos, caminhos e outros lugares e que se tentam mover 
 rapidamente para uma saída enquanto evitam um ou mais fogos. <p>
 O modelo tem 3 componentes mais importantes: o ambiente, as dinâmicas do fogo e 
@@ -120,8 +120,7 @@ O ambiente, como já foi dito anteriormente é bastante customizável, podendo
 decidir onde são os palcos, saídas e entradas e ainda os lugares sentados de
 um auditório de concertos. <p>
 A cada fogo pode ser especificado o seu raio de propagação e produção de fumo.
-Os agentes podem-se aleijar ficando queimados com o fogo ou por inalação de fumo. 
-Estes dados são então guardados. <p>
+Os agentes podem-se aleijar ficando queimados com o fogo ou por inalação de fumo. <p>
 Em relação ao movimento dos agentes, este têm apenas um objetivo, sair do recinto 
 sem passar pelo fogo. Assim, estes movimentos consistem em 3 componentes: seleção 
 da saída, mover-se do seu lugar para um caminho e mover-se pelo caminho até à saída 
@@ -142,7 +141,7 @@ nervosas por isso tendem a ter comportamentos irracionais.
 * As pessoas tentam mover-se o mais rápido que conseguem o que é muito mais
 rápido que o normal.
 * O fumo provoca uma dificuldade em respirar e dores nos olhos. Quando o fogo fica
-mais denso é então muito dificil ou mesmo impossóvel ver por onde se anda.
+mais denso é então muito dificil ou mesmo impossível ver por onde se anda.
 * Começam-se a empurrar e são empurradas pelos outros.
 * As pessoas que vão a correr para as saídas começam a tropeçar nas pessoas que já
 cairam e por isso a multidão abranda.
@@ -160,7 +159,7 @@ Para definir e criar os seus diferentes estados usámos Finite State Machines qu
 é das técnicas mais usadas em IA para jogos e que nos permite criar estados para 
 os agentes. Após a criação destes estados, a cada agente atribuiu-se um estado 
 atual e este vai-se ligar aos restantes estados por transições também criadas 
-por nós. Criámos inicialmente criámos os estados: ver palcos, ir para os palcos, 
+por nós. Criámos inicialmente os estados: ver palcos, ir para os palcos, 
 ter fome, ir comer, estar cansado e ir descansar. <p>
 Os agentes começam a simulação com valores aleatórios de fome (health), cansaço
 (stamina) e preferência entre palcos. Desta maneira cada agente vai ter
@@ -170,18 +169,17 @@ os agentes quando entram no recinto dirigem-se maioritariamente para os palcos.
 Ao longo do tempo vão trocando de palcos se a sua health ou stamina não forem 0. <p>
 O fluxograma mostra o funcionamento da mudança entre palcos. <p>
 ![StagesSwitch](Stage.svg) <p>
-Enquanto os agentes estão a ver os palcos, a sua health e stamina está a baixar 
-e eventualmente quando estas chegam a 0, o estado do agente muda para ir descansar 
-ou comer. <p>
+Enquanto os agentes estão a ver os palcos, a sua health e stamina estão a baixar. 
+Quando estas chegam a 0, o estado do agente muda para ir descansar ou comer. <p>
 Quando a health de um agente chega a 0, ele muda o seu estado para ir comer.
 Dirige-se à zona da comida e procura uma mesa livre (temos uma lista de mesas e o
 agente está sempre a procurar uma mesa livre para depois se dirigir para lá).
 Passa algum tempo a comer, incrementando a sua health com o passar do tempo e ao 
 mesmo tempo, a sua stamina continua a baixar. <p>
-O mesmo acontece com a sua stamina. Se esta chegar a 0, o agente muda o seu
+O mesmo acontece com a stamina. Se esta chegar a 0, o agente muda o seu
 estado e move-se para uma zona verde para descansar onde a stamina começa a aumentar 
 e a sua health a baixar. Nesta zona de espaços verdes, os agentes movem-se para um 
-sitio aleatório do espaço. <p>
+sitio aleatório. <p>
 Eventualmente, quando a sua health e stamina são diferentes de 0, os agentes voltam 
 a dirigir-se para um dos palcos.<p>
 
@@ -191,22 +189,22 @@ isto criámos mais um estado que é o de pânico e as suas respetivas transiçõ
 qualquer que seja o estado atual de cada agente, quando ele vê a explosão, tenha uma
 transição para o estado de pânico. <p>
 As explosões têm 3 raios, um em que os agentes morrem, outro em que agentes ficam
-stunned e depois começam a mover-se a velocidade mais baixa e outro raio em que o 
+"stunned" e depois começam a mover-se a velocidade mais baixa e outro raio em que o 
 pânico se propaga. Neste último raio os agentes vão começar a dirigir-se para as 
 saídas e ao passar por agentes que não estavam em pânico, faz com que estes passem
 a ficar em pânico também.<p>
 
 Para todas estas implementações que fizémos criámos valores que podem ser alterados,
-ou seja, sao parametrizáveis e estes são:
-- Quantidade de agentes; <p>
-- Tempo entre spawn de agentes; <p>
-- Número de saídas; <p>
-- Tamanho da explosão; <p>
-- Raio de stun em relação à explosão; <p>
-- Velocidade de propagação do fogo; <p>
-- Velocidade de propagação de pânico; <p>
-- Alcance (tamanho) do pânico que os agentes espalham; <p>
-- Tempo em que ficam stunned. <p>
+ou seja, são parametrizáveis. Estes valores são:
+- Quantidade de agentes;
+- Tempo entre spawn de agentes;
+- Número de saídas;
+- Tamanho da explosão;
+- Raio de stun em relação à explosão;
+- Velocidade de propagação do fogo;
+- Velocidade de propagação de pânico;
+- Alcance (tamanho) do pânico que os agentes espalham;
+- Tempo em que ficam stunned.
 
 
 ### Resultados e discussão:
@@ -218,7 +216,7 @@ criar os comportamentos que são pretendidos. <p>
 Conseguimos programar comportamentos bastante similares aos de humanos reais. Como 
 acontece nos festivais, o principal são os palcos e é onde as pessoas passam mais 
 tempo e eventualmente depois vão comer e descansar para as zonas com relva durante 
-os concertos. Obersvámos que eles ao início quando chegam aos palcos ficavam sempre 
+os concertos. Observámos que eles ao início quando chegam aos palcos ficavam sempre 
 a tentar "entrar dentro deles" porque queriam chegar ao meio do "collider" e para 
 corrigir isso fomos diminuindo a sua velocidade até ela chegar a zero. <p>
 Relativamente às explosões também conseguimos comportamentos realistas em que o pânico 
@@ -239,7 +237,7 @@ número de mortes de agentes, pois quanto mais rápido se propagar, menos tempo 
 agentes têm para fugir.
 
 ### Conclusões:
-Na simulação que nós implemantámos reparámos algumas semelhanças com o modelo
+Na simulação que implementámos reparámos em algumas semelhanças com o modelo
 criado por Wagner e Agrawal (2014) que simula a evacuação de multidões de um concerto 
 na presença de um desastre com fogo. No entanto eles usam um modelo bastante 
 cutomizável e muito mais aprofundado do que o nosso projeto.
@@ -252,14 +250,14 @@ fechado tipo auditório ou sala de espetáculos e estádios com lugares sentados
 locais para comer e descansar. <p>
 
 Ao observar o comportamento dos nossos agentes conseguimos também observar algumas 
-das hipóteses ou factos que são relatados por Ren et al para um incêndio no seu 
+das hipóteses ou factos que são relatados por Ren et al para um incêndio, no seu 
 estudo, tal como: os agentes emtram em pânico e começam a empurrar-se uns aos outros 
 até chegar à saída. <p>
 
 No fundo o nosso projeto não foi realizado com o intuito de servir como estudo para 
 eventos trágicos tal como os estudos que referimos na introdução, mas achamos que se 
-assemelha bastante por representarem comportamentos que os humanos teriam em caso de 
-um desastre num festival.
+assemelha bastante por representarem comportamentos que os humanos teriam se 
+acontecesse um desastre num festival.
 
 ### Agradecimentos:
 Queremos agradecer ao professor Nuno Fachada por nos ter disponibilizado a biblioteca 
