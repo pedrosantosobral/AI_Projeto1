@@ -20,6 +20,8 @@ de referência para os diferentes locais no mapa; <p>
 - Fez o comportamento das explosões e da fuga e morte dos agentes; <p>
 - Adicionou o pânico entre os agentes e suas melhorias de performance; <p>
 - Pesquisou sobre o estudo de Sagun et al; <p>
+- Na metodologia escreveu sobre as explosões e os valores parametrizáveis; <p>
+- Fez os cometários para documentação XML e gerou a documentação em Doxygen; <p>
 
 
 Joana: <p>
@@ -37,6 +39,7 @@ Joana: <p>
 - Fez os agradecimentos; <p>
 - Fez a parte da metodologia que fala dos estados principais e o fluxograma do 
 funcionamento da mudança entre palcos; <p>
+- Fez os resultados e discussão; <p>
 
 
 
@@ -165,7 +168,7 @@ Como num concerto normal,
 os agentes quando entram no recinto dirigem-se maioritariamente para os palcos.
 Ao longo do tempo vão trocando de palcos se a sua health ou stamina não forem 0. <p>
 O fluxograma mostra o funcionamento da mudança entre palcos. <p>
-![StagesSwitch](Stage.svg)
+![StagesSwitch](Stage.svg) <p>
 Enquanto os agentes estão a ver os palcos, a sua health e stamina está a baixar 
 e eventualmente quando estas chegam a 0, o estado do agente muda para ir descansar 
 ou comer. <p>
@@ -206,6 +209,33 @@ ou seja, sao parametrizáveis e estes são:
 
 
 ### Resultados e discussão:
+Ao realizar esta simulação reparámos que para poder ter um número bastante
+elevado de agentes a correr sem haver "lag" é preciso ter computadores que tenham uma 
+boa performance e otimizar bastante a implementação, porque caso contrário, há uma boa 
+possibilidade de o programa começar a funcionar muito lentamente, e desta forma não 
+criar os comportamentos que são pretendidos. <p>
+Conseguimos programar comportamentos bastante similares aos de humanos reais. Como 
+acontece nos festivais, o principal são os palcos e é onde as pessoas passam mais 
+tempo e eventualmente depois vão comer e descansar para as zonas com relva durante 
+os concertos. Obersvámos que eles ao início quando chegam aos palcos ficavam sempre 
+a tentar "entrar dentro deles" porque queriam chegar ao meio do "collider" e para 
+corrigir isso fomos diminuindo a sua velocidade até ela chegar a zero. <p>
+Relativamente às explosões também conseguimos comportamentos realistas em que o pânico 
+se propaga quando alguém em pânico entra em contacto com outros agentes, propagando-se 
+assim entre a multidão. Quando o fogo se começa a propagar os agentes fogem para a 
+saída mais próxima de si. O único comportamento que ficou àquem na implementação 
+foi que independentemente de o fogo estar a obstruir uma das saídas, os agentes 
+movem-se sempre para a saída mais próxima e neste caso, morrem queimados. <p>
+Experimentámos parâmetros diferentes para algumas variáveis, como o número de saídas 
+e verificámos que com apenas uma saída há muitas mais mortes de agentes do que com duas, 
+porque neste último caso, há mais probabilidades dos agentes conseguirem sair em segurança. 
+Experimentámos também com um alto e baixo número de agentes e verificámos que também 
+isto influência a fuga do recinto em situações de perigo, pois com um amontoado de 
+agentes é mais difícil de sair pela porta devido aos empurrões, no entanto torna a 
+simulação muito mais realista, pois em situações de pânico as pessoas "atropelam-se" 
+umas às outras. Também a velocidade de propagação do fogo influência bastante o 
+número de mortes de agentes, pois quanto mais rápido se propagar, menos tempo os 
+agentes têm para fugir.
 
 ### Conclusões:
 
