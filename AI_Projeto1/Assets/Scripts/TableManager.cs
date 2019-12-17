@@ -4,13 +4,26 @@ using UnityEngine;
 using URandom = UnityEngine.Random;
 using System;
 
+
+/// <summary>
+/// Class that manages all the tables for the agent, returns a free table for the agent
+/// </summary>
 public class TableManager : MonoBehaviour
 {
+    /// <summary>
+    /// Table to be returned to the agent
+    /// </summary>
     public GameObject        toReturn;
-    public GameObject        waitingSpot;
-    //list of all the tables
+
+    /// <summary>
+    /// List of tables in the simulation
+    /// </summary>
     public  List<GameObject> tableList;
 
+    /// <summary>
+    /// Method that checks all the tables and return a empty table to the agent
+    /// </summary>
+    /// <returns></returns>
     public GameObject GiveTableToAgent()
     {
         //get a random Table
@@ -25,7 +38,9 @@ public class TableManager : MonoBehaviour
         return (toReturn);        
 
     }
-    //Get a table from the list of tables
+    /// <summary>
+    /// Get a randomtable from the table list
+    /// </summary>
     private void GetNewTable()
     {
         toReturn = tableList[URandom.Range(0, tableList.Count)];
