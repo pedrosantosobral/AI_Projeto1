@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using LibGameAI.FSMs;
 /// <summary>
-/// Class with every agent behavior and stats. Agent unic stats are created and the
+/// Class with every agent behavior and stats. Agent unique stats are created and the
 /// state machine is updated
 /// </summary>
 public class NavAgentBehaviour : MonoBehaviour

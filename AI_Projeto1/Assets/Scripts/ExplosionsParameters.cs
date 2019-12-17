@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Class that controls the exposions behavior
+/// Class that controls the explosions behavior
 /// </summary>
 public class ExplosionsParameters : MonoBehaviour
 {
