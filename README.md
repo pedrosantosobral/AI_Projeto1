@@ -181,6 +181,30 @@ sitio aleatório do espaço. <p>
 Eventualmente, quando a sua health e stamina são diferentes de 0, os agentes voltam 
 a dirigir-se para um dos palcos.<p>
 
+Durante a execução destas ações todas podemos criar uma explosão (barra de espaços
+do teclado para ativar uma explosão) que deixa os agentes em pânico. Para implementar
+isto criámos mais um estado que é o de pânico e as suas respetivas transições para que
+qualquer que seja o estado atual de cada agente, quando ele vê a explosão, tenha uma
+transição para o estado de pânico. <p>
+As explosões têm 3 raios, um em que os agentes morrem, outro em que agentes ficam
+stunned e depois começam a mover-se a velocidade mais baixa e outro raio em que o 
+pânico se propaga. Neste último raio os agentes vão começar a dirigir-se para as 
+saídas e ao passar por agentes que não estavam em pânico, faz com que estes passem
+a ficar em pânico também.<p>
+
+Para todas estas implementações que fizémos criámos valores que podem ser alterados,
+ou seja, sao parametrizáveis e estes são:
+- Quantidade de agentes; <p>
+- Tempo entre spawn de agentes; <p>
+- Número de saídas; <p>
+- Tamanho da explosão; <p>
+- Raio de stun em relação à explosão; <p>
+- Velocidade de propagação do fogo; <p>
+- Velocidade de propagação de pânico; <p>
+- Alcance (tamanho) do pânico que os agentes espalham; <p>
+- Tempo em que ficam stunned. <p>
+
+
 ### Resultados e discussão:
 
 ### Conclusões:
