@@ -10,7 +10,8 @@ Pedro Santos a21702907
 Pedro: <p>
 - Criou a pasta de projeto inicial; <p>
 - Alterou o script NavAgentBehavior adicionando variáveis para definir a
-stamina e health e velocidade dos agentes e seus métodos para as alterar, variáveis de referência para os diferentes locais no mapa; <p>
+stamina e health e velocidade dos agentes e seus métodos para as alterar, variáveis 
+de referência para os diferentes locais no mapa; <p>
 - Fez os estados de mudança de palcos e respetivos métodos intermédios; <p>
 - Adicionou transições entre estados em movimento; <p>
 - Corrigiu bug da escolha de espaços verdes; <p>
@@ -18,6 +19,7 @@ stamina e health e velocidade dos agentes e seus métodos para as alterar, vari�
 - Fez a parte inicial da introdução; <p>
 - Fez o comportamento das explosões e da fuga e morte dos agentes; <p>
 - Adicionou o pânico entre os agentes e suas melhorias de performance; <p>
+- Pesquisou sobre o estudo de Sagun et al; <p>
 
 
 Joana: <p>
@@ -28,9 +30,12 @@ Joana: <p>
 - Fez o estado de panico e respetivas transições; <p>
 - Adicionou a instaciação de uma explosão num local aleatório; <p>
 - Comentou algumas classes; <p> 
+- Fez a UI para contar o número de agentes mortos;
+- Fez a implementação da saída extra;
 - Fez a introdução e contextualização à pesquisa sobre simulação baseada em agentes; <p>
+- Pesquisou sobre o estudo de Wagner e Agrawal e sobre o estudo de Ren et al; <p>
 - Fez os agradecimentos; <p>
-- Pesquisou sobre o estudo de Wagner e Agrawal; <p>
+
 
 
 
@@ -80,7 +85,7 @@ Já há vários estudos que envolvem modelos de agentes para simulações de mul
 e geralmente recaem em 3 categorias: 1- evacuação de multidões de edifícios,
 2- evacuações de ruas, 3- comportamentos de multidões durante uma evacuação. <p>
 
-** Sagun et al **
+**Sagun et al** <p>
 
 No estudo realizado por Sagun et al (2011) são identificados problemas de projeto
 de edifícios associados a emergências para melhorar a segurança durante eventos
@@ -121,7 +126,7 @@ O porpósito desde sistema é para permitir a criação de multiplos cenários p
 testes e avaliação de medidas de segurança para minimizar os riscos no caso
 de um incêndio. <p>
 
-**Ren et al**
+**Ren et al** <p>
 
 O modelo de Ren et al. (2009) usa agentes para simular uma evacuação na ocorrência
 de uma explosão. Consideraram 5 hipóteses ou factos que são considerados para um
@@ -143,6 +148,22 @@ vários atributos dos agentes (idade, velocidade, escala de pânico, etc) o que 
 
 
 ### Metodologia:
+A simulação foi implementada em 2.5D e os agentes têm movimento dinâmico fazendo
+uso de navmesh para os seus movimentos no recinto. <p>
+Para definir e criar os seus diferentes estados usámos Finite State Machines que 
+é das técnicas mais usadas em IA para jogos e que nos permite criar estados para 
+os agentes. Após a criação destes estados, a cada agente atribuiu-se um estado 
+atual e este vai-se ligar aos restantes estados por transições também criadas 
+por nós. Criámos inicialmente criámos os estados: ver palcos, ir para os palcos, 
+ter fome, ir comer, estar cansado e ir descansar. <p>
+Os agentes começam a simulação com valores aleatórios de fome (health), cansaço
+(stamina) e preferência entre palcos. Desta maneira cada agente vai ter
+comportamentos variados logo no início da simulação. <p>
+Como num concerto normal,
+os agentes quando entram no recinto dirigem-se maioritariamente para os palcos.
+Ao longo do tempo vão trocando de palcos se a sua health ou stamina não forem 0. <p>
+O fluxograma mostra o funcionamento da mudança entre palcos. <p>
+![StagesSwitch](Stage.svg)
 
 ### Resultados e discussão:
 
@@ -166,3 +187,9 @@ Emergency Evacuation. In: Zhou J. (eds) Complex Sciences. Complex 2009.
 Lecture Notes of the Institute for Computer Sciences, Social Informatics and
 Telecommunications Engineering, vol 5. Springer, Berlin, Heidelberg
 https://doi.org/10.1007/978-3-642-02469-6_25
+* Fachada N, Lopes VV, Martins RC, Rosa AC. 2015. Towards a standard model
+for research in agent-based modeling and simulation. PeerJ Computer Science
+1:e36 https://doi.org/10.7717/peerj-cs.36
+* Sagun A., Bouchlaghem D., Anumba C. (2011) Computer simulations vs. building 
+guidance to enhance evacuation performance of buildings during emergency events. 
+https://doi.org/10.1016/j.simpat.2010.12.001
