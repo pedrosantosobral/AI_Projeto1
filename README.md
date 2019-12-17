@@ -21,7 +21,7 @@ de referência para os diferentes locais no mapa; <p>
 - Adicionou o pânico entre os agentes e suas melhorias de performance; <p>
 - Pesquisou sobre o estudo de Sagun et al; <p>
 - Na metodologia escreveu sobre as explosões e os valores parametrizáveis; <p>
-- Fez os cometários para documentação XML e gerou a documentação em Doxygen; <p>
+- Fez os cometários para documentação XML e gerou a documentação em Doxygen.
 
 
 Joana: <p>
@@ -40,6 +40,7 @@ Joana: <p>
 - Fez a parte da metodologia que fala dos estados principais e o fluxograma do 
 funcionamento da mudança entre palcos; <p>
 - Fez os resultados e discussão; <p>
+- Fez a conclusão.
 
 
 
@@ -238,6 +239,27 @@ número de mortes de agentes, pois quanto mais rápido se propagar, menos tempo 
 agentes têm para fugir.
 
 ### Conclusões:
+Na simulação que nós implemantámos reparámos algumas semelhanças com o modelo
+criado por Wagner e Agrawal (2014) que simula a evacuação de multidões de um concerto 
+na presença de um desastre com fogo. No entanto eles usam um modelo bastante 
+cutomizável e muito mais aprofundado do que o nosso projeto.
+Na simulação que nós implementámos serve apenas para um local de concerto
+específico e apenas é possível fazer uma explosão. <p>
+
+Uma grande diferença entre a nossa simulação e a de Wagner e Agrawal é o espaço de 
+simulação. Nós usamos um festival como referência e Wagner e Agrawal usam um espaço 
+fechado tipo auditório ou sala de espetáculos e estádios com lugares sentados e sem 
+locais para comer e descansar. <p>
+
+Ao observar o comportamento dos nossos agentes conseguimos também observar algumas 
+das hipóteses ou factos que são relatados por Ren et al para um incêndio no seu 
+estudo, tal como: os agentes emtram em pânico e começam a empurrar-se uns aos outros 
+até chegar à saída. <p>
+
+No fundo o nosso projeto não foi realizado com o intuito de servir como estudo para 
+eventos trágicos tal como os estudos que referimos na introdução, mas achamos que se 
+assemelha bastante por representarem comportamentos que os humanos teriam em caso de 
+um desastre num festival.
 
 ### Agradecimentos:
 Queremos agradecer ao professor Nuno Fachada por nos ter disponibilizado a biblioteca 
